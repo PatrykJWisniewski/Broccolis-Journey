@@ -17,46 +17,37 @@ public class CameraMovment : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //Moves the ground tiles
         foreach (GameObject g in arrayOfGround)
         {
-            Vector3 groundPos = g.transform.position;
-            groundPos.x += -.015f;
-            g.transform.position = groundPos;
+            g.transform.position += Vector3.left * 1 * Time.deltaTime;
 
             //Moves the ground tiles too the right of the camera if they have gone too far too the lefgt
             if (g.transform.position.x <= -10)
             {
-                groundPos.x = 10;
-                g.transform.position = groundPos;
+                g.transform.position = new Vector3(10,-2.5f,0);
             }
         }
 
         foreach (GameObject f in arrayOfForegrounds)
         {
-            Vector3 forePos = f.transform.position;
-            forePos.x += -.01f;
-            f.transform.position = forePos;
+            f.transform.position += Vector3.left * .2f * Time.deltaTime;
 
-            if (f.transform.position.x <= -32)
+            if (f.transform.position.x <= -16)
             {
-                forePos.x = 16;
-                f.transform.position = forePos;
+                f.transform.position = new Vector3(31.5f, 1, 0);
             }
         }
 
         foreach (GameObject b in arrayOfBackgrounds)
         {
-            Vector3 backPos = b.transform.position;
-            backPos.x += -.005f;
-            b.transform.position = backPos;
+            b.transform.position += Vector3.left * .1f * Time.deltaTime;
 
-            if(b.transform.position.x <= -32)
+            if (b.transform.position.x <= -16)
             {
-                backPos.x = 16;
-                b.transform.position = backPos;
+                b.transform.position = new Vector3(31.5f, 1, 0);
             }
         }
     }

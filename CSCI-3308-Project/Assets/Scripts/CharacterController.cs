@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public Animator animator;
+    public float charSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -15,62 +16,41 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If the player start to move too the right
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if (null != animator)
-            {
-                animator.CrossFade("Moving Forward", 1);
-                transform.eulerAngles = 0 * Vector3.up;
-            }
+            animator.Play("Right - Walking", 0);
         }
-
-        if (Input.GetKeyDown(KeyCode.A))
+        //If the player starts to move too the left
+        else if (Input.GetKeyDown(KeyCode.A))
         {
-            if (null != animator)
-            {
-                animator.CrossFade("Moving Forward", 1);
-                transform.eulerAngles = 180 * Vector3.up;
-            }
+            animator.Play("Left - Walking", 0);
+        }
+        //If the player stops moving too the right
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            animator.Play("Right - Idle", 0);
+        }
+        //If the player stops moving too the left
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            animator.Play("Left - Idle", 0);
         }
 
+        //If the player is moving too the right
         if (Input.GetKey(KeyCode.D))
         {
-            if (null != animator)
-            {
-                transform.position += new Vector3(.05f, 0, 0);
-            }
+            transform.position += Vector3.right * charSpeed * Time.deltaTime;
         }
-
-        if (Input.GetKey(KeyCode.A))
+        //If the player is moving too the left
+        else if (Input.GetKey(KeyCode.A))
         {
-            if (null != animator)
-            {
-                transform.position += new Vector3(-.05f, 0, 0);
-            }
+            transform.position += Vector3.left * charSpeed * Time.deltaTime;
         }
-
-        if (Input.GetKey(KeyCode.S))
+        else
         {
-            if (null != animator)
-            {
-                transform.position += new Vector3(0, -.05f, 0);
-            }
-        }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (null != animator)
-            {
-                transform.position += new Vector3(0, .05f, 0);
-            }
-        }
-
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
-        {
-            if (null != animator)
-            {
-                animator.CrossFade("Idle", 1);
-            }
+            //Moves the caracter with the ground
+            transform.position += Vector3.left * 1 * Time.deltaTime;
         }
     }
 }
