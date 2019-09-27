@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public Animator animator;
+    private Animator animator;
+    private Rigidbody2D rigi;
     public float charSpeed;
+    public Vector3 charJumpPos = new Vector3(0,1,0);
+    public bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>(); //Gets the animator off the character object in game
+        rigi = GetComponent<Rigidbody2D>(); //Gets the rigibody 2d componet off the character object in game
     }
 
     // Update is called once per frame
@@ -37,6 +41,12 @@ public class CharacterController : MonoBehaviour
             animator.Play("Left - Idle", 0);
         }
 
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        {
+            rigi.AddForce(charJumpPos * 10, ForceMode2D.Impulse);
+            isGrounded = false;
+        }
+
         //If the player is moving too the right
         if (Input.GetKey(KeyCode.D))
         {
@@ -47,10 +57,28 @@ public class CharacterController : MonoBehaviour
         {
             transform.position += Vector3.left * charSpeed * Time.deltaTime;
         }
-        else
+        else if (isGrounded)
         {
             //Moves the caracter with the ground
             transform.position += Vector3.left * 1 * Time.deltaTime;
+        }
+    }
+
+    //When the character runs into a trigger that was set up in the game scene
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //If the thing it collied with has the tag finished
+        if(collision.tag == "Finish")
+        {
+            Main.S.PlatformerFailed(); //Funs a function in the main script
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
         }
     }
 }
