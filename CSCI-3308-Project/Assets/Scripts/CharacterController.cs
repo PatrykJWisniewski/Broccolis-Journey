@@ -9,6 +9,7 @@ public class CharacterController : MonoBehaviour
     public float charSpeed;
     public Vector3 charJumpPos = new Vector3(0,1,0);
     public bool isGrounded;
+    public GameObject nuke;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,29 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If the player uses the Q key.
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if(CameraMovment.S.newTimeScaleValue == 1)
+            {
+                CameraMovment.S.newTimeScaleValue = .25f;
+                CameraMovment.S.currentLerpTime = 0;
+            }
+            else
+            {
+                CameraMovment.S.newTimeScaleValue = 1f;
+                CameraMovment.S.currentLerpTime = 0;
+            }
+        }
+
+        //If the player uses the E key.
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GameObject go = Instantiate(nuke);
+            go.transform.position = transform.position + Vector3.up;
+        }
+
+
         //If the player start to move too the right
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -41,7 +65,7 @@ public class CharacterController : MonoBehaviour
             animator.Play("Left - Idle", 0);
         }
 
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rigi.AddForce(charJumpPos * 10, ForceMode2D.Impulse);
             isGrounded = false;
@@ -60,7 +84,7 @@ public class CharacterController : MonoBehaviour
         else if (isGrounded)
         {
             //Moves the caracter with the ground
-            transform.position += Vector3.left * 1 * Time.deltaTime;
+            transform.position += Vector3.left * 1 * CameraMovment.S.timeScaleValue * Time.deltaTime;
         }
     }
 
@@ -74,6 +98,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    //When the chararcter touches the ground the bool isGrounded is set to true so they can jump again
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Ground")
