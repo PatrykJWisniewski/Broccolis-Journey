@@ -2,25 +2,75 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (EdgeCollider2D))]
 public class CharacterController : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody2D rigi;
+    private EdgeCollider2D charCollider;
+    private RaycastOrigins raycastOrigins;
+    const float skinWidth = .015f;
+    public int horizontalRayCount = 4;
+    public int verticalRayCount = 4;
+    private float horizontalRaySpacing;
+    private float verticalRaySpacing;
+
     public float charSpeed;
     public Vector3 charJumpPos = new Vector3(0,1,0);
     public bool isGrounded;
     public GameObject nuke;
+
+    struct RaycastOrigins
+    {
+        public Vector2 topLeft;
+        public Vector2 topRight;
+        public Vector2 bottomLeft;
+        public Vector2 bottomRight;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>(); //Gets the animator off the character object in game
         rigi = GetComponent<Rigidbody2D>(); //Gets the rigibody 2d componet off the character object in game
+        charCollider = GetComponent<EdgeCollider2D>();
+    }
+
+    void UpdateRaycastOrigins()
+    {
+        Bounds bounds = charCollider.bounds;
+        bounds.Expand(skinWidth * -2);
+
+        raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
+        raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
+        raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
+        raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
+    }
+
+    void CalculateRaySpacing()
+    {
+        Bounds bounds = charCollider.bounds;
+        bounds.Expand(skinWidth * -2);
+
+        horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
+        verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
+
+        horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
+        verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateRaycastOrigins();
+        CalculateRaySpacing();
+
+        for(int i = 0; i<verticalRayCount; i++)
+        {
+            Debug.DrawRay(raycastOrigins.bottomRight + Vector2.up * horizontalRaySpacing * i, Vector2.right * 2, Color.red);
+            Debug.DrawRay(raycastOrigins.bottomLeft + Vector2.right * verticalRaySpacing * i, Vector2.up * -2, Color.red);
+        }
+
         //If the player uses the Q key.
         if (Input.GetKeyDown(KeyCode.Q))
         {
