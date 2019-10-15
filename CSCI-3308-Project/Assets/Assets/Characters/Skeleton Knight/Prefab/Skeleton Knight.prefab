@@ -2229,6 +2229,7 @@ GameObject:
   - component: {fileID: 114592370841237768}
   - component: {fileID: 1886918409}
   - component: {fileID: 1360838871}
+  - component: {fileID: 800637824}
   m_Layer: 9
   m_Name: Skeleton Knight
   m_TagString: Player
@@ -2327,12 +2328,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275cc5d0bc2a0db4f9c34d0cd3164dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nuke: {fileID: 2082706845708410395, guid: 99b37eca1d57faf4a8890ea055f58631, type: 3}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  collisions:
+    above: 0
+    below: 0
+    left: 0
+    right: 0
+    climbingSlope: 0
+    slopeAngle: 0
+    slopeAngleOld: 0
   horizontalRayCount: 4
   verticalRayCount: 4
+  jumpHeight: 4
+  timeToJumpApex: 0.4
   charSpeed: 5
-  charJumpPos: {x: 0, y: 0.5, z: 0}
-  isGrounded: 1
-  nuke: {fileID: 2082706845708410395, guid: 99b37eca1d57faf4a8890ea055f58631, type: 3}
 --- !u!68 &1360838871
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -2340,7 +2352,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244936745423482}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -2359,6 +2371,32 @@ EdgeCollider2D:
   - {x: -1, y: 2}
   - {x: -1, y: 1.45}
   - {x: -0.35, y: 0}
+--- !u!61 &800637824
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244936745423482}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5}
+  m_EdgeRadius: 0
 --- !u!1 &1248276693756888
 GameObject:
   m_ObjectHideFlags: 0

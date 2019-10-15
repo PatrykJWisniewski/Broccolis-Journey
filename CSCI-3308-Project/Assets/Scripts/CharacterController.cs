@@ -6,21 +6,30 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     private Animator animator;
-    private Rigidbody2D rigi;
-    private EdgeCollider2D charCollider;
-    private RaycastOrigins raycastOrigins;
-    const float skinWidth = .015f;
+    private Vector3 velocity;
+    public GameObject nuke;
+
+    //All these varaiables have to do with collision detection
+    private BoxCollider2D charCollider;
+    public LayerMask collisionMask;
+    public CollisionInfo collisions; //Shows what side of the charater is colliding
+    private RaycastOrigins raycastOrigins; 
+    private const float skinWidth = .015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
     private float horizontalRaySpacing;
     private float verticalRaySpacing;
 
+    //All these variables have to do with character movmenet
+    public float jumpHeight;
+    public float timeToJumpApex;
     public float charSpeed;
-    public Vector3 charJumpPos = new Vector3(0,1,0);
-    public bool isGrounded;
-    public GameObject nuke;
+    private float gravity;
+    private float jumpVelocity;
+    private float velocityXSmoothing;
+    private float maxClimbAngle = 80;
 
-    struct RaycastOrigins
+    private struct RaycastOrigins
     {
         public Vector2 topLeft;
         public Vector2 topRight;
@@ -28,23 +37,40 @@ public class CharacterController : MonoBehaviour
         public Vector2 bottomRight;
     }
 
+    [System.Serializable]
+    public struct CollisionInfo
+    {
+        public bool above;
+        public bool below;
+        public bool left;
+        public bool right;
+        public bool climbingSlope;
+        public float slopeAngle;
+        public float slopeAngleOld;
+
+        public void Reset()
+        {
+            above = false;
+            below = false;
+            left = false;
+            right = false;
+            climbingSlope = false;
+            slopeAngleOld = slopeAngle;
+            slopeAngle = 0;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>(); //Gets the animator off the character object in game
-        rigi = GetComponent<Rigidbody2D>(); //Gets the rigibody 2d componet off the character object in game
-        charCollider = GetComponent<EdgeCollider2D>();
-    }
+        charCollider = GetComponent<BoxCollider2D>();
 
-    void UpdateRaycastOrigins()
-    {
-        Bounds bounds = charCollider.bounds;
-        bounds.Expand(skinWidth * -2);
+        gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+        jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+        Debug.Log("Gravity: " + gravity + " Jump Velocity: " + jumpVelocity);
 
-        raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
-        raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
-        raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
-        raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
+        CalculateRaySpacing();
     }
 
     void CalculateRaySpacing()
@@ -62,14 +88,22 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateRaycastOrigins();
-        CalculateRaySpacing();
-
-        for(int i = 0; i<verticalRayCount; i++)
+        if(collisions.above || collisions.below)
         {
-            Debug.DrawRay(raycastOrigins.bottomRight + Vector2.up * horizontalRaySpacing * i, Vector2.right * 2, Color.red);
-            Debug.DrawRay(raycastOrigins.bottomLeft + Vector2.right * verticalRaySpacing * i, Vector2.up * -2, Color.red);
+            velocity.y = 0;
         }
+
+        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if (Input.GetKeyDown(KeyCode.Space) && collisions.below)
+        {
+            velocity.y = jumpVelocity;
+        }
+
+        float targetVelocityX = input.x * charSpeed;
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, .1f);
+        velocity.y += gravity * Time.deltaTime;
+        Move(velocity * Time.deltaTime);
 
         //If the player uses the Q key.
         if (Input.GetKeyDown(KeyCode.Q))
@@ -115,45 +149,129 @@ public class CharacterController : MonoBehaviour
             animator.Play("Left - Idle", 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rigi.AddForce(charJumpPos * 10, ForceMode2D.Impulse);
-            isGrounded = false;
-        }
-
-        //If the player is moving too the right
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += Vector3.right * charSpeed * Time.deltaTime;
-        }
-        //If the player is moving too the left
-        else if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.left * charSpeed * Time.deltaTime;
-        }
-        else if (isGrounded)
+        if (collisions.below)
         {
             //Moves the caracter with the ground
             transform.position += Vector3.left * 1 * CameraMovment.S.timeScaleValue * Time.deltaTime;
         }
     }
 
+    private void Move(Vector3 velocity)
+    {
+        UpdateRaycastOrigins();
+        collisions.Reset();
+
+        if (velocity.y != 0)
+        {
+            VerticalCollisions(ref velocity);
+        }
+
+        if (velocity.x != 0)
+        {
+            HorizontalCollisions(ref velocity);
+        }
+
+        transform.Translate(velocity);
+    }
+
+    void UpdateRaycastOrigins()
+    {
+        Bounds bounds = charCollider.bounds;
+        bounds.Expand(skinWidth * -2);
+
+        raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
+        raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
+        raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
+        raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
+    }
+
+    void VerticalCollisions(ref Vector3 velocity)
+    {
+        float directionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + skinWidth;
+
+        for (int i = 0; i < verticalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+
+            if (hit)
+            {
+                velocity.y = (hit.distance - skinWidth) * directionY;
+                rayLength = hit.distance;
+
+                collisions.below = directionY == -1;
+                collisions.above = directionY == 1;
+            }
+        }
+    }
+
+    void HorizontalCollisions(ref Vector3 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+
+        for (int i = 0; i < horizontalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+
+            if (hit)
+            {
+                float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+                if(i == 0 && slopeAngle <= maxClimbAngle)
+                {
+                    float distanceToSlopeStart = 0;
+                    if(slopeAngle != collisions.slopeAngleOld)
+                    {
+                        distanceToSlopeStart = hit.distance - skinWidth;
+                        velocity.x -= distanceToSlopeStart * directionX;
+                    }
+                    ClimbSlope(ref velocity, slopeAngle);
+                    velocity.x += distanceToSlopeStart * directionX;
+                }
+
+                if(!collisions.climbingSlope || slopeAngle > maxClimbAngle)
+                {
+                    velocity.x = (hit.distance - skinWidth) * directionX;
+                    rayLength = hit.distance;
+
+                    collisions.left = directionX == -1;
+                    collisions.right = directionX == 1;
+                }
+            }
+        }
+    }
+
+    void ClimbSlope(ref Vector3 velocity, float slopeAngle)
+    {
+        float moveDistance = Mathf.Abs(velocity.x);
+        float climbVelocityY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+
+        if(velocity.y <= climbVelocityY)
+        {
+            velocity.y = climbVelocityY;
+            velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
+            collisions.below = true;
+            collisions.climbingSlope = true;
+            collisions.slopeAngle = slopeAngle;
+        }
+    }
+
     //When the character runs into a trigger that was set up in the game scene
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(EdgeCollider2D collision)
     {
         //If the thing it collied with has the tag finished
         if(collision.tag == "Finish")
         {
             Main.S.PlatformerFailed(); //Funs a function in the main script
-        }
-    }
-
-    //When the chararcter touches the ground the bool isGrounded is set to true so they can jump again
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
         }
     }
 }
