@@ -2342,7 +2342,7 @@ MonoBehaviour:
     slopeAngleOld: 0
   horizontalRayCount: 4
   verticalRayCount: 4
-  jumpHeight: 4
+  jumpHeight: 5
   timeToJumpApex: 0.4
   charSpeed: 5
 --- !u!68 &1360838871
