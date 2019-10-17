@@ -2228,7 +2228,6 @@ GameObject:
   - component: {fileID: 95109682930491860}
   - component: {fileID: 114592370841237768}
   - component: {fileID: 1886918409}
-  - component: {fileID: 1360838871}
   - component: {fileID: 800637824}
   m_Layer: 9
   m_Name: Skeleton Knight
@@ -2345,32 +2344,6 @@ MonoBehaviour:
   jumpHeight: 5
   timeToJumpApex: 0.4
   charSpeed: 5
---- !u!68 &1360838871
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244936745423482}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.35, y: 0}
-  - {x: 0.35, y: 0}
-  - {x: 1, y: 1.45}
-  - {x: 1, y: 2}
-  - {x: 0.65, y: 2.5}
-  - {x: 0, y: 2.75}
-  - {x: -0.65, y: 2.5}
-  - {x: -1, y: 2}
-  - {x: -1, y: 1.45}
-  - {x: -0.35, y: 0}
 --- !u!61 &800637824
 BoxCollider2D:
   m_ObjectHideFlags: 0
