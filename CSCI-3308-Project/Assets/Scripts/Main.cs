@@ -19,4 +19,9 @@ public class Main : MonoBehaviour
         Debug.Log("Game Over");
         SceneManager.LoadScene("Platformer");
     }
+
+    public void LoadNewGame()
+    {
+        SceneManager.LoadScene("Hub");
+    }
 }
