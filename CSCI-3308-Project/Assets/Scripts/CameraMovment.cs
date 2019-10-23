@@ -40,7 +40,6 @@ public class CameraMovment : MonoBehaviour
         //Moves the tiles 
         //Vector3.Left is (-1,0,0) 
         //Time.deltaTime is being used in order to make the movmenet independt of the frame rate, so people move the same speed if they have 40 or 60 frame per second
-        ground.transform.position += Vector3.left * 1 * timeScaleValue * Time.deltaTime;
 
         //Moves the foreground tiles
         foreach (GameObject f in arrayOfForegrounds)

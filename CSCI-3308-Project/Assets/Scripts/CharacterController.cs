@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
     private Animator animator;
     private Vector3 velocity;
     public GameObject nuke;
+    public GameObject Fire_Point;
 
     //All these varaiables have to do with collision detection
     private BoxCollider2D charCollider;
@@ -20,6 +21,8 @@ public class CharacterController : MonoBehaviour
     private float verticalRaySpacing;
 
     //All these variables have to do with character movmenet
+    public int health = 100;
+    public GameObject deathEffect;
     public float jumpHeight;
     public float timeToJumpApex;
     public float charSpeed;
@@ -66,7 +69,6 @@ public class CharacterController : MonoBehaviour
     {
         animator = GetComponent<Animator>(); //Gets the animator off the character object in game
         charCollider = GetComponent<BoxCollider2D>();
-
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         Debug.Log("Gravity: " + gravity + " Jump Velocity: " + jumpVelocity);
@@ -148,12 +150,6 @@ public class CharacterController : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.A))
         {
             animator.Play("Left - Idle", 0);
-        }
-
-        if (collisions.below)
-        {
-            //Moves the caracter with the ground
-            transform.position += Vector3.left * 1 * CameraMovment.S.timeScaleValue * Time.deltaTime;
         }
     }
 
@@ -331,5 +327,21 @@ public class CharacterController : MonoBehaviour
         {
             Main.S.PlatformerFailed(); //Funs a function in the main script
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    // Start is called before the first frame update
+    void Die()
+    {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+
     }
 }
