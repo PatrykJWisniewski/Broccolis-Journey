@@ -1,0 +1,111 @@
+body{
+
+	background-image: url(login-bg.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+
+.body-container{
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 5fr 3fr;
+	grid-template-rows: 1fr;
+	max-width: 100%;
+	overflow: hidden;
+	transition: 1.5s ease;
+}
+
+.body-right{
+	padding: 50px;
+	background: #ffffff;
+	box-shadow: -2px 0px 34px 4px rgba(0,0,0,0.75);
+	transform: translateX(500px);
+	transition: 1s ease;
+}
+
+.body-right h1{
+	margin-bottom: 50px;
+}
+
+.form-group input[type=text], .form-group input[type=password]{
+	padding: 10px;
+	width: 100%;
+	font-size: 1em;
+	display: block;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	border-color: transparent;
+	transition: 0.5s ease;
+}
+
+.form-group input[type=text]:focus, .form-group input[type=password]:focus{
+	outline: none;
+	background: #dbdbdb;
+	font-size: 1.5em;
+}
+
+.sign-up{
+	margin-bottom: 40px;
+}
+
+nav.navbar ul{
+	margin-top: 20px;
+	color: white;
+	display: flex;
+	width: 80%;
+	justify-content: space-between;
+	text-align: center;
+}
+
+nav.navbar ul li{
+	list-style: none;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-weight: 500;
+	font-size: 0.75em;
+	cursor: pointer;
+	transition: 0.5s ease;
+	height: 34px;
+	text-align: center;
+	padding-left: 5px;
+	border-bottom: 0px solid transparent;
+	border-top: 0px solid transparent;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+nav.navbar ul li:hover{
+	/*border-bottom: 5px solid white;*/
+	border-top: 5px solid white;
+	transition: 0.25s ease;
+}
+
+#main-logo{
+	font-weight: 800;
+	font-size: 2em;
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius:5px;
+	padding: 10px;
+	height: 120px;
+}
+
+#main-logo:hover{
+	border-bottom: 0px solid white;
+	border-top: 0px solid white;
+}
+
+.signup-container{
+	transform: scale(0);
+	transition: 0.75s ease;
+	height: 0;
+	position: absolute;
+	width: 75%;
+}
+
+.login-container{
+	transform: scale(0);
+	transition: 0.75s ease;
+	height: 0;
+}
