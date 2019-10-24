@@ -8,10 +8,20 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public int damage = 40;
     public GameObject impactEffect;
+    public float delay = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        bool m_facingright = gameObject.GetComponent<CharacterController2D>().m_FacingRight;
+        if (m_facingright)
+        {
+            rb.velocity = transform.right * speed;
+        }
+        else if (!m_facingright)
+        {
+            rb.velocity = -transform.right * speed;
+        }
+        Destroy(gameObject, delay);
     }
     void OnTriggerEnter2D (Collider2D hitInfo)
     {

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &436298751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 436298752}
+  m_Layer: 9
+  m_Name: Fire_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &436298752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436298751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.44, y: 1.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4590684244773004}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1014325968095830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,6 +2259,7 @@ GameObject:
   - component: {fileID: 114592370841237768}
   - component: {fileID: 1886918409}
   - component: {fileID: 800637824}
+  - component: {fileID: 741294123}
   m_Layer: 9
   m_Name: Skeleton Knight
   m_TagString: Player
@@ -2279,6 +2310,7 @@ Transform:
   - {fileID: 4033995533904154}
   - {fileID: 4112967665129502}
   - {fileID: 4116086943352878}
+  - {fileID: 436298752}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2328,6 +2360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nuke: {fileID: 2082706845708410395, guid: 99b37eca1d57faf4a8890ea055f58631, type: 3}
+  Fire_Point: {fileID: 436298751}
   collisionMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2337,13 +2370,17 @@ MonoBehaviour:
     left: 0
     right: 0
     climbingSlope: 0
+    descendingSlope: 0
     slopeAngle: 0
     slopeAngleOld: 0
   horizontalRayCount: 4
   verticalRayCount: 4
+  health: 100
+  deathEffect: {fileID: 9046621159680365991, guid: 1a0f52f3f2880d04aa7c5948599239b6,
+    type: 3}
   jumpHeight: 5
-  timeToJumpApex: 0.4
-  charSpeed: 5
+  timeToJumpApex: 0.3
+  charSpeed: 10
 --- !u!61 &800637824
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2370,6 +2407,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &741294123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244936745423482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11318fe3e07a22b43b8a0b89e10355cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 436298752}
+  bulletPrefab: {fileID: 7887187430675046303, guid: b8818fb0c464fc748835d3419672838f,
+    type: 3}
+  fireRate: 0.5
 --- !u!1 &1248276693756888
 GameObject:
   m_ObjectHideFlags: 0
