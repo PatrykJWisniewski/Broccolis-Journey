@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    public static CharacterController S;
+
     private Animator animator;
     private Vector3 velocity;
     public GameObject nuke;
@@ -67,6 +69,8 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        S = this;
+
         animator = GetComponent<Animator>(); //Gets the animator off the character object in game
         charCollider = GetComponent<BoxCollider2D>();
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
