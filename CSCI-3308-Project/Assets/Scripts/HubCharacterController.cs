@@ -69,7 +69,7 @@ public class HubCharacterController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If the thing it collied with has the tag finished
-        if (collision.tag == "Finish")
+        if (collision.tag == "LoadPlatformer")
         {
             Main.S.PlatformerFailed(); //Funs a function in the main script
         }

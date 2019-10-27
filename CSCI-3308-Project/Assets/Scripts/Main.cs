@@ -17,7 +17,7 @@ public class Main : MonoBehaviour
     public void PlatformerFailed()
     {
         Debug.Log("Game Over");
-        SceneManager.LoadScene("Platformer");
+        SceneManager.LoadScene("Spooky Platformer");
     }
 
     public void LoadNewGame()

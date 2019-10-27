@@ -1673,8 +1673,8 @@ GameObject:
   - component: {fileID: 215475488}
   - component: {fileID: 215475487}
   - component: {fileID: 215475486}
-  - component: {fileID: 215475485}
   - component: {fileID: 215475484}
+  - component: {fileID: 215475485}
   - component: {fileID: 215475483}
   - component: {fileID: 215475489}
   m_Layer: 0
@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 215475482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43a6bf2d353c0a649a5f88a5d7fba202, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c1f8a2b4f3499c408d775011e9916a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   arrayOfBackgrounds:
@@ -1813,10 +1813,6 @@ MonoBehaviour:
   - {fileID: 1937983405}
   - {fileID: 1974497560}
   ground: {fileID: 32043933}
-  currentLerpTime: 1
-  lerpTime: 1
-  newTimeScaleValue: 1
-  timeScaleValue: 1
 --- !u!81 &215475486
 AudioListener:
   m_ObjectHideFlags: 0

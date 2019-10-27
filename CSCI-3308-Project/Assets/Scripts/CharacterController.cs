@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CharacterController : MonoBehaviour
 {
@@ -112,7 +113,7 @@ public class CharacterController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         Move(velocity * Time.deltaTime);
 
-        //If the player uses the Q key.
+        /*//If the player uses the Q key.
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if(CameraMovment.S.newTimeScaleValue == 1)
@@ -125,7 +126,7 @@ public class CharacterController : MonoBehaviour
                 CameraMovment.S.newTimeScaleValue = 1f;
                 CameraMovment.S.currentLerpTime = 0;
             }
-        }
+        }*/
 
         //If the player uses the E key.
         if (Input.GetKeyDown(KeyCode.E))
@@ -323,15 +324,46 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    //When the character runs into a trigger that was set up in the game scene
-    private void OnTriggerEnter2D(EdgeCollider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        //If the thing it collied with has the tag finished
-        if(collision.tag == "Finish")
+        if (collision.collider.tag == "Coins")
         {
-            Main.S.PlatformerFailed(); //Funs a function in the main script
+            ContactPoint2D[] contacts = new ContactPoint2D[4];
+            collision.GetContacts(contacts);
+            Tilemap coins = collision.collider.GetComponent<Tilemap>();
+
+            coins.SetTile(coins.WorldToCell(contacts[0].point), null);
+            Debug.Log("+1 Coin!");
+
+            for (int i = 1; i<contacts.Length; i++)
+            {
+                if (contacts[i].point == new Vector2(0, 0)) return;
+                if(coins.GetTile(coins.WorldToCell(contacts[i].point)) != null)
+                {
+                    coins.SetTile(coins.WorldToCell(contacts[i].point), null);
+                    Debug.Log("+1 Coin!");
+                }
+            }
         }
     }
+
+    //When the character runs into a trigger that was set up in the game scene
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //If the thing it collied with has the tag finished
+        if(collision.tag == "Coins")
+        {
+            ContactPoint2D[] contacts = new ContactPoint2D[5];
+            collision.GetContacts(contacts);
+            foreach( ContactPoint2D c in contacts)
+            {
+                Debug.Log(c.point);
+            }
+
+            Tilemap coins = collision.GetComponent<Tilemap>();
+            coins.SetTile(coins.WorldToCell(contacts[0].normal), null);
+        }
+    }*/
 
     public void TakeDamage(int damage)
     {

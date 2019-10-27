@@ -2,19 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovment : MonoBehaviour
+public class MainMenuCameraController : MonoBehaviour
 {
-    public static CameraMovment S;
+    public static MainMenuCameraController S;
 
     public GameObject[] arrayOfBackgrounds;
     public GameObject[] arrayOfForegrounds;
     public GameObject ground;
-
-    //Lerp varaiables
-    public float currentLerpTime;
-    public float lerpTime;
-    public float newTimeScaleValue;
-    public float timeScaleValue;
 
     // Start is called before the first frame update
     void Start()
@@ -25,26 +19,17 @@ public class CameraMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Increment timer once per frame
-        currentLerpTime += Time.unscaledDeltaTime;
-        if (currentLerpTime > lerpTime)
-        {
-            currentLerpTime = lerpTime;
-        }
-
-        //Slows down time in a smooth motion
-        float perc = currentLerpTime / lerpTime;
-        perc = perc * perc * (3f - 2f * perc); //Smooth lerp curve
-        timeScaleValue = Mathf.Lerp(timeScaleValue, newTimeScaleValue, perc);
-
         //Moves the tiles 
         //Vector3.Left is (-1,0,0) 
         //Time.deltaTime is being used in order to make the movmenet independt of the frame rate, so people move the same speed if they have 40 or 60 frame per second
+        Vector3 groundPos = ground.transform.position;
+        groundPos += Vector3.left * Time.deltaTime;
+        ground.transform.position = groundPos;
 
         //Moves the foreground tiles
         foreach (GameObject f in arrayOfForegrounds)
         {
-            f.transform.position += Vector3.left * .2f * timeScaleValue * Time.deltaTime;
+            f.transform.position += Vector3.left * .2f * Time.deltaTime;
 
             if (f.transform.position.x <= -29.3f)
             {
@@ -55,7 +40,7 @@ public class CameraMovment : MonoBehaviour
         //Moves the background tiles
         foreach (GameObject b in arrayOfBackgrounds)
         {
-            b.transform.position += Vector3.left * .1f * timeScaleValue * Time.deltaTime;
+            b.transform.position += Vector3.left * .1f * Time.deltaTime;
 
             if (b.transform.position.x <= -29.3f)
             {
