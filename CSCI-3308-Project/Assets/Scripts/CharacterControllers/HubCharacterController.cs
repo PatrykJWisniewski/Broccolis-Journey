@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class HubCharacterController : MonoBehaviour
 {
+    public static HubCharacterController S;
+
     private Animator animator;
     public float charSpeed;
+    public bool openShop;
+    public HubCharacters hubChar;
 
     // Start is called before the first frame update
     void Start()
     {
+        S = this;
         animator = GetComponent<Animator>(); //Gets the animator off the character object in game
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Main.S.shopMenu.activeInHierarchy == true) return;
+
         //If the player start to move too the right
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -63,6 +70,13 @@ public class HubCharacterController : MonoBehaviour
         {
             transform.position += Vector3.down * charSpeed * Time.deltaTime;
         }
+
+        if(Input.GetKeyDown(KeyCode.Return) && openShop)
+        {
+            Main.S.shopMenu.SetActive(true);
+            hubChar.SetScale(new Vector3(0,0,0));
+            Main.S.shopMenu.GetComponent<Shop_Menu>().SetupShop(hubChar.shopItems);
+        }
     }
 
     //When the character runs into a trigger that was set up in the game scene
@@ -77,6 +91,8 @@ public class HubCharacterController : MonoBehaviour
         if(collision.tag == "Shopkeep")
         {
             Debug.Log("Can talk too a shopkeep");
+            openShop = true;
+            hubChar = collision.GetComponent<HubCharacters>();
         }
     }
 }

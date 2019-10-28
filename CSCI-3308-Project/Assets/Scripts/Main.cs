@@ -7,6 +7,8 @@ public class Main : MonoBehaviour
 {
     public static Main S;
 
+    public GameObject shopMenu;
+
     // Start is called before the first frame update
     void Start()
     {

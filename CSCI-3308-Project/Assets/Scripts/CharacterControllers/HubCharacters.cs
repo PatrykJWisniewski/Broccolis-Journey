@@ -6,6 +6,7 @@ public class HubCharacters : MonoBehaviour
 {
     private Animator animator;
     public GameObject triggerFlavorText;
+    public PlayerItems[] shopItems;
 
     public float lerpTime;
     public float currentLerpTime;
@@ -31,6 +32,12 @@ public class HubCharacters : MonoBehaviour
         float perc = currentLerpTime / lerpTime;
         perc = perc * perc * (3f - 2f * perc); //Smooth lerp curve
         triggerFlavorText.transform.localScale = Vector3.Lerp(triggerFlavorText.transform.localScale, newScale, perc);
+    }
+
+    public void SetScale(Vector3 scale)
+    {
+        newScale = scale;
+        currentLerpTime = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

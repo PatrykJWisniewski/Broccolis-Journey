@@ -6,12 +6,24 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class PlayerItems
+{
+    public string name;
+    public int quanity;
+    public int cost;
+    public int spriteIndex;
+}
+
 public class Player_Data : MonoBehaviour
 {
     static public Player_Data S;
 
+    public Sprite[] itemSprites;
+
     //Stats to be saved
     public int playerMoney;
+    public List<PlayerItems> PlayerItems;
 
     private void Awake()
     {
