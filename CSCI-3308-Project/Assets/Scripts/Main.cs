@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; //This allows us to load scenes
 
+#pragma warning disable 0618
+
 public class Main : MonoBehaviour
 {
     public static Main S;
