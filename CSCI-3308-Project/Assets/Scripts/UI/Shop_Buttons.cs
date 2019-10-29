@@ -8,6 +8,7 @@ public class Shop_Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     //This has to be set from the inspector
     public int optionNum; //This Mouse_Menu scripts number based off the option going from order from top to bottom
+    public bool buying;
     public GameObject selectedGUIImage;
 
     public Image icon;
@@ -60,7 +61,7 @@ public class Shop_Buttons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Shop_Menu.S.Enter();
+        Shop_Menu.S.Enter(buying);
     }
 
     public IEnumerator NotEnouthMoneyError()
