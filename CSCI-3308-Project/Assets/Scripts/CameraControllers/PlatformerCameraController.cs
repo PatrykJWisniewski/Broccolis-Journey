@@ -18,8 +18,8 @@ public class PlatformerCameraController : MonoBehaviour
     void Update()
     {
         //Sets the camPos varaible to be the same x/y position as the character
-        camPos.x = CharacterController.S.transform.position.x;
-        camPos.y = CharacterController.S.transform.position.y;
+        camPos.x = CharacterController2D.S.transform.position.x;
+        camPos.y = CharacterController2D.S.transform.position.y;
 
         //If the camPos.x is going to exceed the bounds of the level set it to the bounds
         if (camPos.x < camLeftBound)
