@@ -10,17 +10,22 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
-    [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+    [SerializeField] private Collider2D m_CrouchDisableCollider;
+    public Collider2D collider2D1;
+    public Collider2D collider2D2;
 
     public float k_GroundedRadius = .05f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-    private Rigidbody2D m_Rigidbody2D;
-    public bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    public Rigidbody2D m_Rigidbody2D;
+    public static bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     private float delay = 0.0f;
     public float delaytime;
     public Animator animator;
+    public GameObject player;
+    public int dash_dist;
+    public float parryForce;
 
     [Header("Events")]
     [Space]
@@ -63,10 +68,14 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
         }
+        if (!m_Grounded)
+        {
+            animator.SetBool("isGrounded", false);
+        }
     }
 
 
-    public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool crouch, bool jump, bool swit,float t1,bool parry)
     {
         // If crouching, check to see if the character can stand up
         if (!crouch)
@@ -81,7 +90,6 @@ public class CharacterController2D : MonoBehaviour
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
-
             // If crouching
             if (crouch)
             {
@@ -128,6 +136,52 @@ public class CharacterController2D : MonoBehaviour
                 // ... flip the player.
                 Flip();
             }
+            if (swit && Time.time > t1 + this.animator.GetCurrentAnimatorStateInfo(0).length-.02)
+            {
+                if (m_FacingRight)
+                {
+                    if (Physics2D.OverlapCircle(player.transform.position + new Vector3(dash_dist, 1,0),0.5f) != null)
+                    {
+                        if (Physics2D.OverlapCircle(player.transform.position + new Vector3(dash_dist, 4, 0), 0.3f) != null) {
+                            if (Physics2D.OverlapCircle(player.transform.position + new Vector3(dash_dist, -2, 0), 0.3f) != null) { }
+                            else
+                            {
+                                player.transform.position = player.transform.position + new Vector3(dash_dist, -3, 0);
+                            }
+                        }
+                        else
+                        {
+                            player.transform.position = player.transform.position + new Vector3(dash_dist, 3, 0);
+                        }
+                    }
+                    else
+                    {
+                        player.transform.position = player.transform.position + new Vector3(dash_dist, 0, 0);
+                    }
+                }
+                else if (!m_FacingRight)
+                {
+                    if (Physics2D.OverlapCircle(player.transform.position + new Vector3(-dash_dist, 1, 0), 0.5f) != null)
+                    {
+                        if (Physics2D.OverlapCircle(player.transform.position + new Vector3(-dash_dist, 4, 0), 0.3f) != null)
+                        {
+                            if (Physics2D.OverlapCircle(player.transform.position + new Vector3(-dash_dist, -2, 0), 0.3f) != null) { }
+                            else
+                            {
+                                player.transform.position = player.transform.position + new Vector3(-dash_dist, -3, 0);
+                            }
+                        }
+                        else
+                        {
+                            player.transform.position = player.transform.position + new Vector3(-dash_dist, 3, 0);
+                        }
+                    }
+                    else
+                    {
+                        player.transform.position = player.transform.position + new Vector3(-dash_dist, 0, 0);
+                    }
+                }
+            }
         }
         // If the player should jump...
         if (m_Grounded && jump)
@@ -136,8 +190,19 @@ public class CharacterController2D : MonoBehaviour
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             delay = delaytime + Time.time;
-            animator.SetBool("isGrounded", false);
         }
+        if (!m_Grounded && m_Rigidbody2D.velocity.y < 0)
+        {
+            animator.SetBool("isFalling", true);
+        }
+        if (parry)
+        {
+            if (collider2D1.IsTouchingLayers(LayerMask.GetMask("Enemy")) || collider2D2.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+            {
+                m_Rigidbody2D.AddForce(new Vector2(0, parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
+            }
+        }
+
     }
 
 

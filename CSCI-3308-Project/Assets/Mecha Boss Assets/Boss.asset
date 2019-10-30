@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: Boss
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: Torso
+    m_Hash: -425815167
+    m_CategoryList:
+    - m_Name: Damaged
+      m_Hash: 326473335
+      m_Sprite: {fileID: -7361249463506776999, guid: dda3b47e6615b402cac38660a249c441,
+        type: 3}
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: -8473136455892997518, guid: da4312a4f5e8a40fb8b603e4f48311e7,
+        type: 3}
+    - m_Name: Heavy Damaged
+      m_Hash: 426376618
+      m_Sprite: {fileID: -982655398231265924, guid: f80f85867ce2e4950b38a87121c86553,
+        type: 3}
+  - m_Name: Right Arm
+    m_Hash: 747450821
+    m_CategoryList:
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: -6915106872503537690, guid: 5d210b03c10be46e49fde6292fd2def8,
+        type: 3}
+  - m_Name: Left Arm
+    m_Hash: -285110375
+    m_CategoryList:
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: 4019509167184864343, guid: f16e7839a5ffa40e3a28f6b636b548bf,
+        type: 3}
+  - m_Name: Right Shoulder
+    m_Hash: 1727624152
+    m_CategoryList:
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: 21300000, guid: d4ba663e50c6e44138cee85353ca5574, type: 3}
+  - m_Name: Left Shoulder
+    m_Hash: 1850674898
+    m_CategoryList:
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: 9018592652302634940, guid: 421cccffe53fe496da66a3a0dd825bae,
+        type: 3}
+  - m_Name: Lower Torso 1
+    m_Hash: -436143975
+    m_CategoryList:
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: -5275490776411961158, guid: 6a4de5f691fa04c29bbfe3f5c16c6814,
+        type: 3}
+  - m_Name: Lower Torso 2
+    m_Hash: 2131339555
+    m_CategoryList:
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: -6240339535632661523, guid: 775497477e8784130aea24991c4edb1c,
+        type: 3}
+  - m_Name: Lower Torso 3
+    m_Hash: 135174581
+    m_CategoryList:
+    - m_Name: Undamaged
+      m_Hash: 1510593163
+      m_Sprite: {fileID: -8665353333922801727, guid: e1c5fb65985364b1d8c165046106e581,
+        type: 3}
