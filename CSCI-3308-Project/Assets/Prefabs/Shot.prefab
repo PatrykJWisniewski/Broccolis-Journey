@@ -133,11 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94fb6b2d92b7e347bd5c612172a5737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 10
   rb: {fileID: 330192253663048773}
   damage: 40
   impactEffect: {fileID: 5627924118915263022, guid: 4812e208e83eddf4d87931e65ca1908a,
     type: 3}
+  delay: 20
 --- !u!95 &-6383627203620085806
 Animator:
   serializedVersion: 3

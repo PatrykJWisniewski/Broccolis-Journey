@@ -10652,6 +10652,7 @@ MonoBehaviour:
   camUpperBound: 100
   camLeftBound: 10
   camRightBound: 1000
+
   arrayOfBackgrounds:
   - {fileID: 2066718223}
   - {fileID: 728400870}
@@ -10673,6 +10674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopMenu: {fileID: 0}
+
 --- !u!82 &774868731
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11316,8 +11318,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1886918409, guid: c187984af8c9ae4438c44d2a335b98a8, type: 3}
-      propertyPath: jumpHeight
-      value: 5
+      propertyPath: charSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 800637824, guid: c187984af8c9ae4438c44d2a335b98a8, type: 3}
       propertyPath: m_Size.x
