@@ -39,6 +39,8 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D (Collider2D hitInfo)
     {
+        if (hitInfo.tag == "Coins") return;
+
         enemy enemy = hitInfo.GetComponent<enemy>();
         if (enemy != null)
         {

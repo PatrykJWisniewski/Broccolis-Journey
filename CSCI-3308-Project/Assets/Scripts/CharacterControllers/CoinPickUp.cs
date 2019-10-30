@@ -5,32 +5,18 @@ using UnityEngine.Tilemaps;
 
 public class CoinPickUp : MonoBehaviour
 {
-    //When the character has a collision
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        //If the collision object has the tag Coins.
-        if (collision.collider.tag == "Coins")
+        if (collision.tag == "Coins")
         {
-            ContactPoint2D[] contacts = new ContactPoint2D[20]; //Create a new array for 20 contact points
-            collision.GetContacts(contacts); //Get all the contact points
-            Tilemap coins = collision.collider.GetComponent<Tilemap>();
+            Tilemap coins = collision.GetComponent<Tilemap>();
 
-            //Get rid of the coin at the first contact point
-            coins.SetTile(coins.WorldToCell(contacts[0].point), null);
-            PlatformerUI.S.UpdateMoneyTextAndAmount(1);
-
-            //Get rid of all the coins at the other contact points
-            for (int i = 1; i < contacts.Length; i++)
+            if (coins.GetTile(coins.WorldToCell(transform.position + new Vector3(0, 1, 0))) != null)
             {
-                //If there was no contact...
-                if (contacts[i].point == new Vector2(0, 0)) return;
-                //If the coin at this contact point was already accounted for...
-                if (coins.GetTile(coins.WorldToCell(contacts[i].point)) != null)
-                {
-                    coins.SetTile(coins.WorldToCell(contacts[i].point), null);
-                    PlatformerUI.S.UpdateMoneyTextAndAmount(1);
-                }
+                PlatformerUI.S.UpdateMoneyTextAndAmount(1);
             }
+
+            coins.SetTile(coins.WorldToCell(transform.position + new Vector3(0, 1, 0)), null);
         }
     }
 }

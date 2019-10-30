@@ -25,6 +25,8 @@ public class enemyBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        if (hitInfo.tag == "Coins") return;
+
         player_health player_health = hitInfo.GetComponent<player_health>();
         player_movement Player_move = hitInfo.GetComponent<player_movement>();
         CharacterController2D Player = hitInfo.GetComponent<CharacterController2D>();
