@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlatformerCameraController : MonoBehaviour
 {
+    public static PlatformerCameraController S;
+
     private Vector3 camPos = new Vector3 (0,0,-10);
     //Floats below set in inspector
     public float camLowerBound;
@@ -11,8 +13,16 @@ public class PlatformerCameraController : MonoBehaviour
     public float camLeftBound;
     public float camRightBound;
 
+    public float foreGroundRiseSpeed;
+    public float backGroundRiseSpeed;
+
     public GameObject[] arrayOfBackgrounds;
     public GameObject[] arrayOfForegrounds;
+
+    private void Start()
+    {
+        S = this;
+    }
 
     // Update is called once per frame
     void Update()
@@ -48,7 +58,7 @@ public class PlatformerCameraController : MonoBehaviour
         {
             Vector3 backPos = arrayOfBackgrounds[i].transform.position;
             backPos.x = (camPos.x / 1.025f) + (i * 40);
-            backPos.y = (camPos.y / 1.02f);
+            backPos.y = (camPos.y / backGroundRiseSpeed); //1.02f
             arrayOfBackgrounds[i].transform.position = backPos;
         }
 
@@ -57,7 +67,7 @@ public class PlatformerCameraController : MonoBehaviour
         {
             Vector3 backPos = arrayOfForegrounds[i].transform.position;
             backPos.x = (camPos.x / 1.05f) + (i * 40);
-            backPos.y = (camPos.y / 1.1f);
+            backPos.y = (camPos.y / foreGroundRiseSpeed); //1.1f
             arrayOfForegrounds[i].transform.position = backPos;
         }
     }
