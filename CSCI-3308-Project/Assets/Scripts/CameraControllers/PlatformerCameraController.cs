@@ -16,6 +16,8 @@ public class PlatformerCameraController : MonoBehaviour
     public float foreGroundRiseSpeed;
     public float backGroundRiseSpeed;
 
+    public Vector3 offset;
+
     public GameObject[] arrayOfBackgrounds;
     public GameObject[] arrayOfForegrounds;
 
@@ -67,7 +69,7 @@ public class PlatformerCameraController : MonoBehaviour
         {
             Vector3 backPos = arrayOfForegrounds[i].transform.position;
             backPos.x = (camPos.x / 1.05f) + (i * 40);
-            backPos.y = (camPos.y / foreGroundRiseSpeed); //1.1f
+            backPos.y = (camPos.y / foreGroundRiseSpeed) + offset.y; //1.1f
             arrayOfForegrounds[i].transform.position = backPos;
         }
     }

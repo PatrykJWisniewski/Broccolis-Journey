@@ -6,26 +6,26 @@ public class Fireball : MonoBehaviour
 {
     private ParticleSystem ps;
     public ParticleSystem childPS;
+    public GameObject explosion;
 
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
     }
 
-    private void OnParticleTrigger()
-    {
-        
-    }
-
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("coll");
         bool moduleEnabled = false;
-        var emission = ps.emission;
-        var childEmission = childPS.emission;
+        var emission = ps.emission; //Emision of fire stream partical effect
+        var childEmission = childPS.emission; //Emmision of fire sparks partical effect
         emission.enabled = moduleEnabled;
-        childEmission.enabled = moduleEnabled;
+
+        childEmission.enabled = moduleEnabled; //Disables emission
         var collision = ps.collision;
         collision.enabled = moduleEnabled;
+
+        //Creates an explosion when it collides with the ground or character
+        GameObject boom = Instantiate(explosion);
+        boom.transform.position = transform.position;
     }
 }
