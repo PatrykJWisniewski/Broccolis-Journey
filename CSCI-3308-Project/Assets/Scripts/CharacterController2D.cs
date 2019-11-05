@@ -223,4 +223,16 @@ public class CharacterController2D : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name.Equals("Cloud"))
+            this.transform.parent = col.transform;
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.name.Equals("Cloud"))
+            this.transform.parent = null;
+    }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Coins
   - Shopkeep
   - LoadHiddenBoss
+  - PowerUp
+  - Death
   layers:
   - Default
   - TransparentFX
@@ -24,9 +26,9 @@ TagManager:
   - Enemy
   - EventTriggers
   - Collectables
-  - 
-  - 
-  - 
+  - PowerUps
+  - Death
+  - End
   - 
   - 
   - 
