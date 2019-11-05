@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Volcano Platformer.unity
     guid: 57f58d34936a6d64d946aecab62ee8bf
+  - enabled: 1
+    path: Assets/Forest Platformer.unity
+    guid: 8d194952f6e680a43bea4ccf7506185e
+  - enabled: 1
+    path: Assets/Hidden Boss Platformer.unity
+    guid: 6fac786fb59caff4eae6a8810efae1cb
   m_configObjects: {}

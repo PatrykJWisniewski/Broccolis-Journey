@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlatformerCameraController : MonoBehaviour
 {
+    public static PlatformerCameraController S;
+
     private Vector3 camPos = new Vector3 (0,0,-10);
     //Floats below set in inspector
     public float camLowerBound;
@@ -11,15 +13,28 @@ public class PlatformerCameraController : MonoBehaviour
     public float camLeftBound;
     public float camRightBound;
 
+    public float foreGroundRiseSpeed;
+    public float backGroundRiseSpeed;
+
+    public Vector3 offset;
+
     public GameObject[] arrayOfBackgrounds;
     public GameObject[] arrayOfForegrounds;
+
+    private void Start()
+    {
+        S = this;
+    }
 
     // Update is called once per frame
     void Update()
     {
         //Sets the camPos varaible to be the same x/y position as the character
         camPos.x = CharacterController2D.S.transform.position.x;
-        camPos.y = CharacterController2D.S.transform.position.y;
+        if (!CharacterController2D.S.m_Grounded)
+        {
+            camPos.y = CharacterController2D.S.transform.position.y;
+        }
 
         //If the camPos.x is going to exceed the bounds of the level set it to the bounds
         if (camPos.x < camLeftBound)
@@ -48,7 +63,7 @@ public class PlatformerCameraController : MonoBehaviour
         {
             Vector3 backPos = arrayOfBackgrounds[i].transform.position;
             backPos.x = (camPos.x / 1.025f) + (i * 40);
-            backPos.y = (camPos.y / 1.02f);
+            backPos.y = (camPos.y / backGroundRiseSpeed); //1.02f
             arrayOfBackgrounds[i].transform.position = backPos;
         }
 
@@ -57,7 +72,7 @@ public class PlatformerCameraController : MonoBehaviour
         {
             Vector3 backPos = arrayOfForegrounds[i].transform.position;
             backPos.x = (camPos.x / 1.05f) + (i * 40);
-            backPos.y = (camPos.y / 1.1f);
+            backPos.y = (camPos.y / foreGroundRiseSpeed) + offset.y; //1.1f
             arrayOfForegrounds[i].transform.position = backPos;
         }
     }

@@ -28,4 +28,16 @@ public class Main : MonoBehaviour
     {
         SceneManager.LoadScene("Hub");
     }
+
+    public IEnumerator LoadHiddenBossLevel()
+    {
+        Debug.Log("Loading Hidden Boss Level");
+        UIFadeOutIn.S.currentLerpTime = 0;
+        UIFadeOutIn.S.newTranparency = 255;
+        PlatformerCameraController.S.camLowerBound = -10000;
+
+        yield return new WaitForSecondsRealtime(5);
+
+        SceneManager.LoadSceneAsync("Hidden Boss Platformer", LoadSceneMode.Single);
+    }
 }
