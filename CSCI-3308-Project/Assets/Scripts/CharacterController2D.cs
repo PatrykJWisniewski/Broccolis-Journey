@@ -8,14 +8,17 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
+    [SerializeField] private LayerMask m_WhatIsEnemy;
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
+    [SerializeField] private Transform m_attackCheck;
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;
     public Collider2D collider2D1;
     public Collider2D collider2D2;
-
-    public float k_GroundedRadius = .05f; // Radius of the overlap circle to determine if grounded
-    private bool m_Grounded;            // Whether or not the player is grounded.
+    public int damage = 30;
+    public float k_attackRadius = .05f;
+    public float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
+    private bool m_Grounded;  // Whether or not the player is grounded
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     public Rigidbody2D m_Rigidbody2D;
     public static bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -26,6 +29,7 @@ public class CharacterController2D : MonoBehaviour
     public GameObject player;
     public int dash_dist;
     public float parryForce;
+    private bool wasattack = false;
 
     [Header("Events")]
     [Space]
@@ -75,7 +79,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
 
-    public void Move(float move, bool crouch, bool jump, bool swit,float t1,bool parry)
+    public void Move(float move, bool crouch, bool jump, bool swit,float t1,bool parry,bool attack)
     {
         // If crouching, check to see if the character can stand up
         if (!crouch)
@@ -85,6 +89,24 @@ public class CharacterController2D : MonoBehaviour
             {
                 crouch = true;
             }
+        }
+        if (attack)
+        {
+            Collider2D[] hit = Physics2D.OverlapCircleAll(m_attackCheck.position, k_attackRadius, m_WhatIsEnemy);
+
+            if (hit != null && !wasattack)
+            {
+                wasattack = true;
+                for (int i = 0; i < hit.Length; i++)
+                {
+                    enemy enemy = hit[i].GetComponent<enemy>();
+                    enemy.TakeDamage(damage);
+                }
+            }
+        }
+        else
+        {
+            wasattack = false;
         }
 
         //only control the player if grounded or airControl is turned on

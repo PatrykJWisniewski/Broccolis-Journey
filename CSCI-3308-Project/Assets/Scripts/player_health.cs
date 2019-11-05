@@ -18,8 +18,6 @@ public class player_health : MonoBehaviour
     // Start is called before the first frame update
     void Die()
     {
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
 
     }
 }

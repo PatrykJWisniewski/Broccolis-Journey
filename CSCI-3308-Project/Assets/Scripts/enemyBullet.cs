@@ -12,6 +12,7 @@ public class enemyBullet : MonoBehaviour
     internal Vector2 direction;
     internal string name;
     private Vector2 new_direction;
+    GameObject player;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
     EnemyFiring firing;
     // Start is called before the first frame update

@@ -11,7 +11,7 @@ public class enemyAI : MonoBehaviour
     public Animator animator;
     public float k_GroundedRadius = .05f;
     private float dist;
-    private bool m_Grounded = true;
+    public bool m_Grounded = true;
     private Vector2 direction;
     public Collider2D collider2D;
     public float Range;
@@ -68,11 +68,13 @@ public class enemyAI : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         if (m_Grounded)
         {
+            speed = 100f;
             rb.gravityScale = 0.3f;
             force.y = 0;
         }
         else
         {
+            speed = 0;
             rb.gravityScale = 1;
             force.y = -10;
         }

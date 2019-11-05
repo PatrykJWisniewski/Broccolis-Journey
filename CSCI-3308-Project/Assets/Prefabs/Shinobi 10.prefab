@@ -2126,6 +2126,7 @@ MonoBehaviour:
   runSpeed: 40
   parry: 0
   crouchtime: 0.5
+  attackLimit: 0
   SlideLimit: 1
   DashLimit: 0
   parryLimit: 0
@@ -2149,11 +2150,17 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1024
+  m_WhatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
   m_GroundCheck: {fileID: 1628838320}
+  m_attackCheck: {fileID: 0}
   m_CeilingCheck: {fileID: 497574435}
   m_CrouchDisableCollider: {fileID: 221050201}
   collider2D1: {fileID: 0}
   collider2D2: {fileID: 0}
+  damage: 40
+  k_attackRadius: 0.05
   k_GroundedRadius: 0.2
   m_Rigidbody2D: {fileID: 0}
   delaytime: 0.05

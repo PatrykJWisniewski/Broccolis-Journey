@@ -10,6 +10,7 @@ public class player_movement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    bool attack = false;
     bool dash = false;
     public bool parry = false;
     bool isjumping = false;
@@ -17,13 +18,15 @@ public class player_movement : MonoBehaviour
     private float limit = 0f;
     private float Cooldown = 0f;
     private float Cooldown2 = 0f;
+    private float Cooldown3 = 0f;
+    private float Cooldown4 = 0f;
+    public float attackLimit;
     public float SlideLimit;
     public float DashLimit;
+    private float attacktime;
     private float parrytime;
     public float parryLimit;
-    private float Cooldown3 = 0f;
     private float t1;
-    private float t2;
     private bool swit = false;
     public Rigidbody2D m_Rigidbody2D;
 
@@ -51,6 +54,13 @@ public class player_movement : MonoBehaviour
             parry = true;
             parrytime = Time.time + .23f;
             Cooldown3 = parryLimit + Time.time;
+        }
+        if(Input.GetButtonDown("Attack") && !crouch && !parry && !dash && Time.time > Cooldown4)
+        {
+            attack = true;
+            animator.SetBool("isAttacking", true);
+            Cooldown4 = Time.time + attackLimit;
+            attacktime = Time.time + .3f;
         }
         if (Input.GetButtonDown("Crouch") && Time.time > Cooldown)
         {
@@ -90,6 +100,11 @@ public class player_movement : MonoBehaviour
             parry = false;
             animator.SetBool("isParry", false);
         }
+        if (attack && Time.time > attacktime)
+        {
+            attack = false;
+            animator.SetBool("isAttacking", false);
+        }
     }
     public void OnLanding()
     {
@@ -100,7 +115,7 @@ public class player_movement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, swit, t1,parry);
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, swit, t1,parry,attack);
         if (Time.time > t1 + this.animator.GetCurrentAnimatorStateInfo(0).length-.02)
         {
             swit = false;
