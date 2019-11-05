@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     public GameObject impactEffect;
     public float delay = 0f;
     private bool right = true;
+    internal string name;
     // Start is called before the first frame update
     void Start()
     {
