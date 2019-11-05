@@ -12784,7 +12784,7 @@ PrefabInstance:
     - target: {fileID: 6149277934381931125, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6149277934381931125, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
@@ -14664,7 +14664,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 3.0749764
-  MaxDistance: 500
+  MaxDistance: 8.395015
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
