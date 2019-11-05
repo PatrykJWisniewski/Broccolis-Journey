@@ -29,7 +29,7 @@ body{
 	margin-bottom: 50px;
 }
 
-.form-group input[type=text], .form-group input[type=password]{
+.form-group input[type=email], .form-group input[type=password]{
 	padding: 10px;
 	width: 100%;
 	font-size: 1em;
@@ -40,7 +40,7 @@ body{
 	transition: 0.5s ease;
 }
 
-.form-group input[type=text]:focus, .form-group input[type=password]:focus{
+.form-group input[type=email]:focus, .form-group input[type=password]:focus{
 	outline: none;
 	background: #dbdbdb;
 	font-size: 1.5em;
@@ -57,6 +57,12 @@ nav.navbar ul{
 	width: 80%;
 	justify-content: space-between;
 	text-align: center;
+}
+
+.signup-error-message, .login-error-message{
+	color: tomato;
+	padding: 15px;
+	padding-left: 0;
 }
 
 nav.navbar ul li{
@@ -108,4 +114,11 @@ nav.navbar ul li:hover{
 	transform: scale(0);
 	transition: 0.75s ease;
 	height: 0;
+}
+
+.login-error-message div, .signup-error-message div {
+    border: solid 1px tomato;
+    border-radius: 5px;
+    padding: 5px;
+    display: inline-block;
 }
