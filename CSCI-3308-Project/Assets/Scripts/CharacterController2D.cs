@@ -20,7 +20,7 @@ public class CharacterController2D : MonoBehaviour
     public int damage = 30;
     public float k_attackRadius = .05f;
     public float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
-    private bool m_Grounded;  // Whether or not the player is grounded
+    public bool m_Grounded;  // Whether or not the player is grounded
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     public Rigidbody2D m_Rigidbody2D;
     public static bool m_FacingRight = true;  // For determining which way the player is currently facing.
