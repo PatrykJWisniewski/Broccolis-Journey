@@ -31,10 +31,7 @@ public class PlatformerCameraController : MonoBehaviour
     {
         //Sets the camPos varaible to be the same x/y position as the character
         camPos.x = CharacterController2D.S.transform.position.x;
-        if (!CharacterController2D.S.m_Grounded)
-        {
-            camPos.y = CharacterController2D.S.transform.position.y;
-        }
+        camPos.y = CharacterController2D.S.transform.position.y;
 
         //If the camPos.x is going to exceed the bounds of the level set it to the bounds
         if (camPos.x < camLeftBound)
