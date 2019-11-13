@@ -60,7 +60,7 @@ public class CharacterController2D : MonoBehaviour
         S = this;
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
