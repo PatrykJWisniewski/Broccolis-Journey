@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
+    public static CharacterController2D S;
+
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
@@ -52,6 +54,11 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+    }
+
+    private void Start()
+    {
+        S = this;
     }
 
     private void FixedUpdate()
@@ -111,7 +118,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl && player_health.health > 0)
+        if (m_Grounded || m_AirControl)
         {
             // If crouching
             if (crouch)
@@ -223,11 +230,6 @@ public class CharacterController2D : MonoBehaviour
             if (parry)
             {
                 m_Rigidbody2D.AddForce(new Vector2(0, parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
-            }
-            else
-            {
-                m_Rigidbody2D.AddForce(new Vector2(400- (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime), parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
-                player_health.TakeDamage(40);
             }
         }
 
