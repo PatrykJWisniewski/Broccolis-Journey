@@ -1,0 +1,70 @@
+<!-- ./public/index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat Widget</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <main>
+  <header>
+    <div class="row">
+      <h1>Game Chat</h1>
+    </div>
+    <div class="row">
+      <div class="column"><div style="padding: 10px;">Online Users: </div></div>
+      <div class="column"><div class="user-count">1</div></div>
+    </div>
+  </header>
+
+  <section class="chat">
+    <p><i>Messages will appear below</i></p>
+  </section>
+
+  <form>
+    <input type="text" placeholder="Say something nice.. " />
+    <button>Send</button>
+  </br></br>
+
+  </form>
+</main>
+
+    <!-- Include jquery, javascript file -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+<!-- for some reason taking away defer made it work -->
+
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD3TX4_EZtqIX03RThjQ3rJr30Q4rarozM",
+    authDomain: "csci3308-8fc5a.firebaseapp.com",
+    databaseURL: "https://csci3308-8fc5a.firebaseio.com",
+    projectId: "csci3308-8fc5a",
+    storageBucket: "csci3308-8fc5a.appspot.com",
+    messagingSenderId: "52671011064",
+    appId: "1:52671011064:web:7f7cc19ae97be90619030d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+</script>
+<script src="javascript.js"></script>
+
+  </body>
+</html>
