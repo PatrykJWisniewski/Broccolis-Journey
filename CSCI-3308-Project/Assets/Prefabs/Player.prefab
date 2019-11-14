@@ -2316,6 +2316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b21f2fa1fe0d844a258839ab667580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingHiddenBoss: 0
 --- !u!1 &6151563439826526023
 GameObject:
   m_ObjectHideFlags: 0

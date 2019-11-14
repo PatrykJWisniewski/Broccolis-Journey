@@ -1,37 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player_health : MonoBehaviour
 {
-    public Animator animator;
-    public int health = 300;
+    public float health = 2000f;
+    public float originalHealth = 2000f;
     public GameObject deathEffect;
-    private bool dead = false;
-    private float t1;
-    void FixedUpdate()
-    {
-        if (dead && Time.time > t1 + this.animator.GetCurrentAnimatorStateInfo(0).length)
-        {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-        }
-    }
+    public GameObject FailLevelUI;
+
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0f)
         {
             Die();
         }
     }
-    // Start is called before the first frame update
-    void Die()
+
+    private void Update()
     {
-        if (!dead)
+        if(health <= 0f)
         {
-            animator.SetBool("isDead", true);
-            t1 = Time.time;
-            dead = true;
+            Die();
         }
     }
+    public void Die()
+    {
+        //Instantiate(deathEffect, transform.position, Quaternion.identity);
+        FailLevelUI.SetActive(true);
+        StartCoroutine(Pause());
+    }
+    private IEnumerator Pause()
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene(1);
+    }
+
 }
