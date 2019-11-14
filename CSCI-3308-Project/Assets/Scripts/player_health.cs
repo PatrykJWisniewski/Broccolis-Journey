@@ -25,7 +25,7 @@ public class player_health : MonoBehaviour
             Die();
         }
     }
-    void Die()
+    public void Die()
     {
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         FailLevelUI.SetActive(true);

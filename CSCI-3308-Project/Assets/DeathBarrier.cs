@@ -15,7 +15,6 @@ public class DeathBarrier : MonoBehaviour
 
     void LayerTrigger(Collider2D player)
     {
-        player_health stats = player.GetComponent<player_health>();
-        stats.health -= 1000;
+        player.GetComponent<player_health>().Die();
     }
 }
