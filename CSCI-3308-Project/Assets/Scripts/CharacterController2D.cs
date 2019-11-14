@@ -18,7 +18,7 @@ public class CharacterController2D : MonoBehaviour
     public int damage = 30;
     public float k_attackRadius = .05f;
     public float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
-    private bool m_Grounded;  // Whether or not the player is grounded
+    public bool m_Grounded;  // Whether or not the player is grounded
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     public Rigidbody2D m_Rigidbody2D;
     public static bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -30,6 +30,7 @@ public class CharacterController2D : MonoBehaviour
     public int dash_dist;
     public float parryForce;
     private bool wasattack = false;
+    public player_health player_health;
 
     [Header("Events")]
     [Space]
@@ -110,7 +111,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl)
+        if (m_Grounded || m_AirControl && player_health.health > 0)
         {
             // If crouching
             if (crouch)
@@ -217,11 +218,16 @@ public class CharacterController2D : MonoBehaviour
         {
             animator.SetBool("isFalling", true);
         }
-        if (parry)
+        if (collider2D1.IsTouchingLayers(LayerMask.GetMask("Enemy")) || collider2D2.IsTouchingLayers(LayerMask.GetMask("Enemy")))
         {
-            if (collider2D1.IsTouchingLayers(LayerMask.GetMask("Enemy")) || collider2D2.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+            if (parry)
             {
                 m_Rigidbody2D.AddForce(new Vector2(0, parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
+            }
+            else
+            {
+                m_Rigidbody2D.AddForce(new Vector2(400- (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime), parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
+                player_health.TakeDamage(40);
             }
         }
 
