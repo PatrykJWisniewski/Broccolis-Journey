@@ -78889,6 +78889,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6110741682328205801, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: sortingOrder
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 6149805263575888690, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: m_BodyType
@@ -78898,11 +78903,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_JumpForce
       value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6110741682328205801, guid: e1c13b04b73f7a74387eb9846a45e370,
-        type: 3}
-      propertyPath: sortingOrder
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6316934092411509515, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
@@ -80495,7 +80495,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 130871
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -133228,6 +133228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 1279257363}
+  healthBar: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &1657400680
 MonoBehaviour:
   m_ObjectHideFlags: 0

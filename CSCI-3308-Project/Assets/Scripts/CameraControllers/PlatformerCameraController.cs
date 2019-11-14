@@ -13,10 +13,16 @@ public class PlatformerCameraController : MonoBehaviour
     public float camLeftBound;
     public float camRightBound;
 
+    public Vector3 camOffset;
+
     public float foreGroundRiseSpeed;
     public float backGroundRiseSpeed;
 
-    public Vector3 offset;
+    public float foreGroundMoveSpeed;
+    public float backGroundMoveSpeed;
+
+    public Vector3 foreGroundOffset;
+    public Vector3 backGroundOffset;
 
     public GameObject[] arrayOfBackgrounds;
     public GameObject[] arrayOfForegrounds;
@@ -53,24 +59,24 @@ public class PlatformerCameraController : MonoBehaviour
             camPos.y = camLowerBound;
         }
 
-        transform.position = camPos; //Set the position of the camera to be that of camPos
+        transform.position = camPos + camOffset; //Set the position of the camera to be that of camPos
 
         //For each background in the array move it with the character at a slower rate then the camera to simulate paralaxing
         for (int i = 0; i < arrayOfBackgrounds.Length; i++)
         {
             Vector3 backPos = arrayOfBackgrounds[i].transform.position;
-            backPos.x = (camPos.x / 1.025f) + (i * 40);
-            backPos.y = (camPos.y / backGroundRiseSpeed); //1.02f
-            arrayOfBackgrounds[i].transform.position = backPos;
+            backPos.x = (camPos.x / backGroundMoveSpeed) + (i * 40) + backGroundOffset.x;
+            backPos.y = (camPos.y / backGroundRiseSpeed) + backGroundOffset.y; //1.02f
+            arrayOfBackgrounds[i].transform.position = backPos + camOffset;
         }
 
         //For each foreground in the array move it with the character at a slower rate then the camera to simulate paralaxing
         for (int i = 0; i < arrayOfForegrounds.Length; i++)
         {
             Vector3 backPos = arrayOfForegrounds[i].transform.position;
-            backPos.x = (camPos.x / 1.05f) + (i * 40);
-            backPos.y = (camPos.y / foreGroundRiseSpeed) + offset.y; //1.1f
-            arrayOfForegrounds[i].transform.position = backPos;
+            backPos.x = (camPos.x / foreGroundMoveSpeed) + (i * 40) + foreGroundOffset.x;
+            backPos.y = (camPos.y / foreGroundRiseSpeed) + foreGroundOffset.y; //1.1f
+            arrayOfForegrounds[i].transform.position = backPos + camOffset;
         }
     }
 }
