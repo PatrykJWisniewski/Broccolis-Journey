@@ -60,8 +60,7 @@ public class CharacterController2D : MonoBehaviour
     {
         S = this;
     }
-
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
@@ -118,7 +117,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl && player_health.health > 0)
+        if (m_Grounded || m_AirControl)
         {
             // If crouching
             if (crouch)
@@ -230,11 +229,6 @@ public class CharacterController2D : MonoBehaviour
             if (parry)
             {
                 m_Rigidbody2D.AddForce(new Vector2(0, parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
-            }
-            else
-            {
-                m_Rigidbody2D.AddForce(new Vector2(400- (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime), parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
-                player_health.TakeDamage(40);
             }
         }
 
