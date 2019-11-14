@@ -80432,9 +80432,13 @@ MonoBehaviour:
   camUpperBound: 200
   camLeftBound: -2
   camRightBound: 1000
+  camOffset: {x: 0, y: 0, z: 0}
   foreGroundRiseSpeed: 1.037
   backGroundRiseSpeed: 1.019
-  offset: {x: 0, y: 3, z: 0}
+  foreGroundMoveSpeed: 1.05
+  backGroundMoveSpeed: 1.025
+  foreGroundOffset: {x: 0, y: 0, z: 0}
+  backGroundOffset: {x: 0, y: 0, z: 0}
   arrayOfBackgrounds:
   - {fileID: 747895482}
   - {fileID: 2144821428}
