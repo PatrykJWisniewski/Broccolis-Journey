@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DeathBarrier : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void OnTriggerEnter2D(Collider2D collision)
+
+    public void OnTriggerEnter(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
