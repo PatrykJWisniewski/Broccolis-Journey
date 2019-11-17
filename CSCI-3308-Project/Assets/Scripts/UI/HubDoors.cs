@@ -31,7 +31,10 @@ public class HubDoors : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) && canLoadScene)
         {
-            SceneManager.LoadScene(sceneName);
+            UIFadeOutIn.S.currentLerpTime = 0;
+            UIFadeOutIn.S.newTranparency = 255;
+
+            SceneManager.LoadSceneAsync(sceneName);
         }
     }
 

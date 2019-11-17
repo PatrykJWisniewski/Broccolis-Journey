@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Main Menu.unity
     guid: a74c21c1388fd1c43bdf951e2360761d
   - enabled: 1
-    path: Assets/Hub.unity
+    path: Assets/ForestHub.unity
     guid: 2100ad754d79bf64aa402fb5444917d5
   - enabled: 1
     path: Assets/Spooky Platformer.unity
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Winter Platformer.unity
     guid: 22ddf9b07e11f4e40ba6d7cc6001be3e
+  - enabled: 1
+    path: Assets/Spooky Platformer Base Level.unity
+    guid: 71318488bb767314b9779881a26b609e
   m_configObjects: {}
