@@ -3317,9 +3317,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9663babe03fd5045bfb437b5d0b5b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &508417531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6149805263575888703, guid: e1c13b04b73f7a74387eb9846a45e370,
+    type: 3}
+  m_PrefabInstance: {fileID: 513823530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508417527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e59063ee66c3ef4eacae3b112d774a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &508417535 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6149805263575888690, guid: e1c13b04b73f7a74387eb9846a45e370,
+    type: 3}
+  m_PrefabInstance: {fileID: 513823530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &508417537 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6055806904308703481, guid: e1c13b04b73f7a74387eb9846a45e370,
     type: 3}
   m_PrefabInstance: {fileID: 513823530}
   m_PrefabAsset: {fileID: 0}
@@ -3559,13 +3577,28 @@ PrefabInstance:
     - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: health
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: FailLevelUI
       value: 
       objectReference: {fileID: 1257969826}
+    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: m_Rigidbody2D
+      value: 
+      objectReference: {fileID: 508417535}
+    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 508417537}
+    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: char_con
+      value: 
+      objectReference: {fileID: 508417531}
     - target: {fileID: 6316934092411509515, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: m_Enabled
