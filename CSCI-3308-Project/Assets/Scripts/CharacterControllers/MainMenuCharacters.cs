@@ -9,6 +9,7 @@ public class MainMenuCharacters : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        animator.Play("Walking", 0);
+        animator.Play("Running", 0);
+        animator.speed = .5f;
     }
 }

@@ -78889,6 +78889,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6110741682328205801, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: sortingOrder
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 6149805263575888690, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: m_BodyType
@@ -80432,9 +80437,13 @@ MonoBehaviour:
   camUpperBound: 200
   camLeftBound: -2
   camRightBound: 1000
+  camOffset: {x: 0, y: 0, z: 0}
   foreGroundRiseSpeed: 1.037
   backGroundRiseSpeed: 1.019
-  offset: {x: 0, y: 3, z: 0}
+  foreGroundMoveSpeed: 1.05
+  backGroundMoveSpeed: 1.025
+  foreGroundOffset: {x: 0, y: 0, z: 0}
+  backGroundOffset: {x: 0, y: 0, z: 0}
   arrayOfBackgrounds:
   - {fileID: 747895482}
   - {fileID: 2144821428}
@@ -80495,7 +80504,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 130871
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
