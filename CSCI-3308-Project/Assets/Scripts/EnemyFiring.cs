@@ -12,13 +12,13 @@ public class EnemyFiring : MonoBehaviour
     public Transform Enemy;
     public enemyBullet Enemybullet;
     private Vector2 dir;
-    public float Range;
+    public float bulletRange;
     private string name;
 
     // Update is called once per frame
     void Update()
     {
-        if (target.position.x - Enemy.position.x < Range|| target.position.y - Enemy.position.y < Range)
+        if (Mathf.Abs(target.transform.position.x - Enemy.transform.position.x) < bulletRange)
         {
             if (canShoot)
             {
@@ -29,6 +29,10 @@ public class EnemyFiring : MonoBehaviour
                     nextFire = Time.time + fireRate;
                 }
             }
+        }
+        else
+        {
+
         }
     }
     void Shoot()
