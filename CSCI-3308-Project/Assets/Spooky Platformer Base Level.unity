@@ -3060,6 +3060,11 @@ PrefabInstance:
       propertyPath: Range
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -9048165518657077071, guid: 482aef20ff2831e49a5067ee4e9d2568,
+        type: 3}
+      propertyPath: bulletRange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3518539479385984085, guid: 482aef20ff2831e49a5067ee4e9d2568,
         type: 3}
       propertyPath: target
@@ -3300,6 +3305,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 513823530}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &508417529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+    type: 3}
+  m_PrefabInstance: {fileID: 513823530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508417527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9663babe03fd5045bfb437b5d0b5b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &508417535 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 6149805263575888690, guid: e1c13b04b73f7a74387eb9846a45e370,
+    type: 3}
+  m_PrefabInstance: {fileID: 513823530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &508417538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6149277934381931125, guid: e1c13b04b73f7a74387eb9846a45e370,
@@ -3493,11 +3516,56 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6149805263575888701, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: runSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149805263575888701, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: parry
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149805263575888701, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: m_Rigidbody2D
+      value: 
+      objectReference: {fileID: 508417535}
     - target: {fileID: 6149805263575888703, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: m_JumpForce
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 6149805263575888703, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: m_Rigidbody2D
+      value: 
+      objectReference: {fileID: 508417535}
+    - target: {fileID: 6149805263575888703, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: m_attackCheck
+      value: 
+      objectReference: {fileID: 1942443500}
+    - target: {fileID: 6149805263575888703, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: player_health
+      value: 
+      objectReference: {fileID: 508417529}
+    - target: {fileID: 6149805263575888703, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: m_WhatIsEnemy.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: FailLevelUI
+      value: 
+      objectReference: {fileID: 1257969826}
     - target: {fileID: 6316934092411509515, guid: e1c13b04b73f7a74387eb9846a45e370,
         type: 3}
       propertyPath: m_Enabled
@@ -3608,26 +3676,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6149805263575888701, guid: e1c13b04b73f7a74387eb9846a45e370,
-        type: 3}
-      propertyPath: runSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149805263575888701, guid: e1c13b04b73f7a74387eb9846a45e370,
-        type: 3}
-      propertyPath: parry
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
-        type: 3}
-      propertyPath: health
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
-        type: 3}
-      propertyPath: FailLevelUI
-      value: 
-      objectReference: {fileID: 1257969826}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c13b04b73f7a74387eb9846a45e370, type: 3}
 --- !u!1 &540226928
@@ -29095,6 +29143,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 508417538}
+    - target: {fileID: -9048165518657077071, guid: 482aef20ff2831e49a5067ee4e9d2568,
+        type: 3}
+      propertyPath: bulletRange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3518539479385984085, guid: 482aef20ff2831e49a5067ee4e9d2568,
         type: 3}
       propertyPath: target
@@ -30301,6 +30354,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 508417538}
+    - target: {fileID: -9048165518657077071, guid: 482aef20ff2831e49a5067ee4e9d2568,
+        type: 3}
+      propertyPath: bulletRange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3518539479385984085, guid: 482aef20ff2831e49a5067ee4e9d2568,
         type: 3}
       propertyPath: target
@@ -31657,6 +31715,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 508417538}
+    - target: {fileID: -9048165518657077071, guid: 482aef20ff2831e49a5067ee4e9d2568,
+        type: 3}
+      propertyPath: bulletRange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3518539479385984085, guid: 482aef20ff2831e49a5067ee4e9d2568,
         type: 3}
       propertyPath: target
@@ -33284,6 +33347,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &1942443500 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6149805263666279660, guid: e1c13b04b73f7a74387eb9846a45e370,
+    type: 3}
+  m_PrefabInstance: {fileID: 513823530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1944702473
 GameObject:
   m_ObjectHideFlags: 0
