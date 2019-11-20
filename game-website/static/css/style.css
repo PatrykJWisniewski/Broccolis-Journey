@@ -23,13 +23,14 @@ body{
 	box-shadow: -2px 0px 34px 4px rgba(0,0,0,0.75);
 	transform: translateX(500px);
 	transition: 1s ease;
+	overflow-y: scroll;
 }
 
 .body-right h1{
 	margin-bottom: 50px;
 }
 
-.form-group input[type=email], .form-group input[type=password]{
+.form-group input[type=email], .form-group input[type=password], .form-group input[type=text]{
 	padding: 10px;
 	width: 100%;
 	font-size: 1em;
@@ -40,7 +41,7 @@ body{
 	transition: 0.5s ease;
 }
 
-.form-group input[type=email]:focus, .form-group input[type=password]:focus{
+.form-group input[type=email]:focus, .form-group input[type=password]:focus, .form-group input[type=text]:focus{
 	outline: none;
 	background: #dbdbdb;
 	font-size: 1.5em;
@@ -121,5 +122,9 @@ nav.navbar ul li:hover{
     border-radius: 5px;
     padding: 5px;
     display: inline-block;
+}
+
+#signup-button{
+	margin-bottom: 50px;
 }
 

@@ -1,3 +1,7 @@
+let newAccount=false;
+let displayname = "";
+let photourl = "";
+
 $('document').ready(function(){
 
 	//make login box slide in from right
@@ -27,9 +31,13 @@ $('document').ready(function(){
 
 	//create new user in database when sign up button is clicked
 	$('#signup-button').on('click', function(){
+		newAccount = true;
 		$('.signup-error-message').empty();
 		let email = $('.signup-container #signup-username').val();
 		let password;
+		displayname = $('#signup-displayname').val();
+		photourl = $('#signup-photo').val();
+		console.log('displayname: ' + displayname + " photoURL" + photourl);
 
 		//check if passwords match
 		if ($('#signup-password').val() === $('#signup-confirmpassword').val()){
@@ -52,7 +60,6 @@ $('document').ready(function(){
 			}
 		  console.log(error);
 		});
-
 	});
 
 	//log in when login button is clicked then redirect to game page
@@ -73,13 +80,30 @@ $('document').ready(function(){
 			console.log(error);
 
 		});
-
+		newAccount = false;
 	});
 
 	//redirect on signup/login
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
-	  	window.location = "webGL/index.html";
+	  		if (newAccount){
+	  		  user.updateProfile({ // <-- Update Method here
+
+                    displayName: displayname,
+                    photoURL: photourl
+
+                  }).then(function() {
+
+                    console.log('profile updated successfully');
+                   	window.location = "webGL/index.html";
+
+                  }, function(error) {
+                    console.log(error);
+                  });
+              }
+              else{
+              		window.location = "webGL/index.html";
+              }
 	  }
 	});
 

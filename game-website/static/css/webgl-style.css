@@ -357,4 +357,23 @@ span#closemodal {
     text-shadow: none;
 }
 
+.profile-image img{
+	border-radius: 500px;
+	height: 200px;
+	width: auto;
+}
+
+img#open-profile{
+	border-radius: 100px;
+	height: 40px;
+	margin: auto;
+	transition: 0.25s ease;
+}
+
+img#open-profile:hover {
+   transform: scale(1.2);
+   transition: .25s ease;
+}
+
+
 

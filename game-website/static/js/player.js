@@ -16,15 +16,26 @@ $('document').ready(function(){
 	  	window.location = "../index.html";
 	  }
 	  else{
-	  	$('#curUser').html(firebase.auth().currentUser.email);
-	  	$('.profile-email').html(firebase.auth().currentUser.email);
-	  	$('.profile-username').html(firebase.auth().currentUser.username);
+	  	$('#curUser').html(firebase.auth().currentUser.displayName);
+	  	$('#open-profile').after('<img src ="' + firebase.auth().currentUser.photoURL + '" alt = "profile picture" />');
+	  	$('#open-profile').remove();
+	  	$('#profile img').attr('id', 'open-profile');
+	  	$('#open-profile').on('click', function(){
+				$('.userprofile').css('display', 'block');
+				$('.userprofile-sidebar').css('width', '400px');
+				$('.profile-email').html(firebase.auth().currentUser.email);
+			  	$('.profile-username').html(firebase.auth().currentUser.displayName);
+			  	$('.profile-image').html('<img src ="' + firebase.auth().currentUser.photoURL + '" alt = "profile picture" />');
+		});
 	  }
 	});
 
 	$('#open-profile').on('click', function(){
 		$('.userprofile').css('display', 'block');
 		$('.userprofile-sidebar').css('width', '400px');
+		$('.profile-email').html(firebase.auth().currentUser.email);
+	  	$('.profile-username').html(firebase.auth().currentUser.displayName);
+	  	$('.profile-image').html('<img src ="' + firebase.auth().currentUser.photoURL + '" alt = "profile picture" />');
 	});
 
 	$('.userprofile').on('click', function(e){
