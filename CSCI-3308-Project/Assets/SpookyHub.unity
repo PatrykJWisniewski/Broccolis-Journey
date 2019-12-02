@@ -2184,7 +2184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e131cbd224df2de4ab1695b52e022d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopMenu: {fileID: 0}
+  shopMenu: {fileID: 1438489787}
 --- !u!81 &300972580
 AudioListener:
   m_ObjectHideFlags: 0
