@@ -2265,6 +2265,8 @@ MonoBehaviour:
   dash_dist: 3
   parryForce: 550
   player_health: {fileID: 6149805262839774639}
+  hurt: 0
+  invulnerable: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -2310,13 +2312,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9663babe03fd5045bfb437b5d0b5b65, type: 3}
   m_Name:
-  m_EditorClassIdentifier:
-  health: 100
+  m_EditorClassIdentifier: 
+  health: 300
   originalHealth: 2000
   deathEffect: {fileID: 9046621159680365991, guid: 1a0f52f3f2880d04aa7c5948599239b6,
     type: 3}
   FailLevelUI: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 6055806904308703481}
+  m_Rigidbody2D: {fileID: 6149805263575888690}
+  recovery_time: 0.5
+  char_con: {fileID: 6149805263575888703}
 --- !u!114 &818037976
 MonoBehaviour:
   m_ObjectHideFlags: 0
