@@ -1,5 +1,7 @@
 $('document').ready(function(){
 
+	console.log("DOCUMENT READY");
+
 	//sign user out when sign out button is clicked
 	$('#sign-out').on('click', function(){
 		firebase.auth().signOut().then(function() {

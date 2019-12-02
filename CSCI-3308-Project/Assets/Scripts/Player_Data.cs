@@ -38,6 +38,10 @@ public class Player_Data : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        #if !UNITY_EDITOR && UNITY_WEBGL
+                  WebGLInput.captureAllKeyboardInput = false;
+        #endif
     }
 
     //Saves the players data such as Health and Itmes
