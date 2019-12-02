@@ -88,6 +88,8 @@ function getDate(){
       $('#chatmessage-input').val("");
       $('#chatmessage-input').focus();
       // $(e.target).find('input').focus();
+
+      $(".live-feed").animate({ scrollTop: $('.live-feed').height() }, "slow");
     });
 
 
