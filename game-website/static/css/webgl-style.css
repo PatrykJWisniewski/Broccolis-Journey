@@ -13,6 +13,7 @@ body{
     border-radius: 10px;
     text-align: center;
     height: 435px;
+    overflow-y: scroll;
 }
 
 .live-feed h1 {

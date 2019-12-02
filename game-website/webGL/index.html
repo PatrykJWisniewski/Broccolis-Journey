@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="../static/css/webgl-style.css">
     <script defer src= "../static/js/player.js"></script>
+    <script defer src= "../static/js/chat.js"></script>
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
@@ -32,15 +33,13 @@
         </nav>
       </div>
       <div>
-      <div class = "live-feed"><h1>Live Feed</h1>
-        <p> User1 just joined <span class = "live-feed-time">3 min ago</span></p>
-        <p> User2 just passed level 2 <span class = "live-feed-time">10 min ago</span></p>
-        <p> User2: "I won!" <span class = "live-feed-time">12 min ago</span></p>
-      </div>
-      <div class = "chatmessage">
-          <input type = "text" class = "form-control" id = "chatmessage-input" placeholder="Enter message">
-          <button type = "button" class = "form-control" id = "chatmessage-button">Send</button>
-        </div>
+            <div class="live-feed"><h1>Live Feed</h1>
+                <p><i>Messages will appear below</i></p>
+            </div>
+            <div class = "chatmessage">
+                <input type="text" class="form-control" id="chatmessage-input" placeholder="Say something nice.. ">
+                <button type="submit" class="form-control" id="chatmessage-button">Send</button>
+            </div>
      </div>
       <div class="webgl-content">
         <div id="unityContainer" style="width: 960px; height: 600px"></div>
@@ -127,7 +126,7 @@
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
   <script defer src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
 <script>
   // Your web app's Firebase configuration
