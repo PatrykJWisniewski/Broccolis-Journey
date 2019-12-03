@@ -528,6 +528,16 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: health
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149805262839774639, guid: e1c13b04b73f7a74387eb9846a45e370,
+        type: 3}
+      propertyPath: FailLevelUI
+      value: 
+      objectReference: {fileID: 668375436}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c13b04b73f7a74387eb9846a45e370, type: 3}
 --- !u!1 &217312964
@@ -4551,7 +4561,7 @@ GameObject:
   - component: {fileID: 1335395758}
   - component: {fileID: 1335395761}
   m_Layer: 15
-  m_Name: spikes
+  m_Name: DeathObjects
   m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9058,11 +9068,15 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: bf4352379f8208043937f3da08715a4f, type: 2}
   - m_RefCount: 488
     m_Data: {fileID: 11400000, guid: b40fea1323da0dc40a1b9e4e3d8f1e6c, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 299651ed256a81640a56ca6fd97dc374, type: 3}
   - m_RefCount: 488
     m_Data: {fileID: 21300000, guid: dcb3273a32dd3084a9837d1c63be6dd0, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 490
     m_Data:
@@ -9088,7 +9102,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -55, y: -36, z: 0}
-  m_Size: {x: 338, y: 37, z: 1}
+  m_Size: {x: 338, y: 39, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
