@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Spooky Platformer Base Level.unity
     guid: 71318488bb767314b9779881a26b609e
+  - enabled: 1
+    path: Assets/VolcanoHub.unity
+    guid: 3c7088193a9cdb844bfd35c92a45de6e
+  - enabled: 1
+    path: Assets/WinterHub.unity
+    guid: 8d23d0dc50786d545a22f33c4ee9e6d5
+  - enabled: 1
+    path: Assets/SpookyHub.unity
+    guid: 9f15600af432b1947930b31b4a80a5f1
   m_configObjects: {}

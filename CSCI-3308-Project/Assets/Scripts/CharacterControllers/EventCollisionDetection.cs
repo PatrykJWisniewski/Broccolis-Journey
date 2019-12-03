@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class EventCollisionDetection : MonoBehaviour
 {
@@ -42,6 +43,27 @@ public class EventCollisionDetection : MonoBehaviour
         if (collision.tag == "Shopkeep")
         {
             canOpenShop = true;
+        }
+
+        if (collision.tag == "LoadVolcanoHub")
+        {
+            SceneManager.LoadScene("VolcanoHub");
+        }
+
+        if (collision.tag == "LoadForestHub")
+        {
+            SceneManager.LoadScene("ForestHub");
+            Debug.Log("Loading Forest");
+        }
+
+        if (collision.tag == "LoadWinterHub")
+        {
+            SceneManager.LoadScene("WinterHub");
+        }
+
+        if (collision.tag == "LoadSpookyHub")
+        {
+            SceneManager.LoadScene("SpookyHub");
         }
     }
 
