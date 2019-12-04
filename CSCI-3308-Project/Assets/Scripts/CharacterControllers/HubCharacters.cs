@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HubCharacters : MonoBehaviour
 {
+    public static HubCharacters S;
+
     private Animator animator;
     public GameObject triggerFlavorText;
     public PlayerItems[] shopItems;
@@ -14,6 +16,7 @@ public class HubCharacters : MonoBehaviour
 
     private void Start()
     {
+        S = this;
         animator = GetComponent<Animator>();
         animator.Play("Idle", 0);
         animator.speed = .5f;
@@ -42,7 +45,7 @@ public class HubCharacters : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        newScale = new Vector3(1,1,1);
+        newScale = new Vector3(-1,1,1);
         currentLerpTime = 0;
     }
 
