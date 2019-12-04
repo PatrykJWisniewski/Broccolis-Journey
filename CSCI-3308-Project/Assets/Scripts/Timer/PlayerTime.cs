@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerTime : MonoBehaviour
 {
-    public GameObject Time;
 
+    public GameObject Time;
+    public GameObject PD;
     public bool isPlaying;
     Text txt;
     //Test Database  https://write-from-unity.firebaseio.com/
@@ -24,10 +25,12 @@ public class PlayerTime : MonoBehaviour
 
     void Start()
     {
+
         sw.Restart();
         isPlaying=true;
-        getUser("Unity");
         StartTimer();
+        PlayerName = PD.GetComponent<Player_Data>().GetUser();
+
     }
 
     void Awake()
@@ -54,12 +57,6 @@ public class PlayerTime : MonoBehaviour
         sw.Restart();
     }
 
-    // Call with unityInstance.SendMessage('UserInfo', 'getUser','username');
-
-    public void getUser(string setUser)
-    {
-        PlayerName = setUser;
-    }
 
     public void Submit()
     {

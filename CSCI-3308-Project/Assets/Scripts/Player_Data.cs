@@ -18,6 +18,7 @@ public class PlayerItems
 
 public class Player_Data : MonoBehaviour
 {
+    public string username = "0";
     static public Player_Data S;
 
     public Sprite[] itemSprites;
@@ -52,6 +53,17 @@ public class Player_Data : MonoBehaviour
 
     }
 
+    // Call with unityInstance.SendMessage('Player_Data', 'SetUser','username');
+
+    public void SetUser(string setUser)
+    {
+        username = setUser;
+    }
+
+    public string GetUser()
+    {
+        return username;
+    }
     //Loads the players data
     public void Load(int slot)
     {
