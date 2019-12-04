@@ -53,16 +53,16 @@ public class Player_Data : MonoBehaviour
 
     }
 
-    // Call with unityInstance.SendMessage('Player_Data', 'SetUser','username');
+    // Call with unityInstance.SendMessage('PlayerData', 'SetUser','username');
 
     public void SetUser(string setUser)
     {
-        username = setUser;
+        S.username = setUser;
     }
 
     public string GetUser()
     {
-        return username;
+        return S.username;
     }
     //Loads the players data
     public void Load(int slot)

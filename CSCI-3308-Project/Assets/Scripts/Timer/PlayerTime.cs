@@ -60,6 +60,7 @@ public class PlayerTime : MonoBehaviour
 
     public void Submit()
     {
+        PlayerName = PD.GetComponent<Player_Data>().GetUser();
         sw.Stop();
         if (PlayerName == "0")
         {
