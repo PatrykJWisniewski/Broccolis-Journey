@@ -15,6 +15,7 @@ public class enemyAI : MonoBehaviour
     private Vector2 direction;
     public Collider2D collider2D;
     public float Range;
+    private float Speed = 0;
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private Transform m_GroundCheck;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
@@ -26,6 +27,7 @@ public class enemyAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Speed = speed;
     }
 
     void FixedUpdate()
@@ -62,19 +64,19 @@ public class enemyAI : MonoBehaviour
         {
             direction = new Vector2(dist, 0f).normalized;
         }
-        Vector2 force = direction * speed * Time.deltaTime;
+        Vector2 force = direction * Speed * Time.deltaTime;
 
         Vector2 velocity = rb.velocity;
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         if (m_Grounded)
         {
-            speed = 100f;
+            Speed = speed;
             rb.gravityScale = 0.3f;
             force.y = 0;
         }
         else
         {
-            speed = 0;
+            Speed = 0;
             rb.gravityScale = 1;
             force.y = -10;
         }
