@@ -8,7 +8,7 @@ public class MainMenuCameraController : MonoBehaviour
 
     public GameObject[] arrayOfBackgrounds;
     public GameObject[] arrayOfForegrounds;
-    public GameObject[] ground;
+    public GameObject ground;
 
     // Start is called before the first frame update
     void Start()
@@ -22,17 +22,9 @@ public class MainMenuCameraController : MonoBehaviour
         //Moves the tiles 
         //Vector3.Left is (-1,0,0) 
         //Time.deltaTime is being used in order to make the movmenet independt of the frame rate, so people move the same speed if they have 40 or 60 frame per second
-        foreach(GameObject g in ground)
-        {
-            Vector3 groundPos = g.transform.position;
-            groundPos += Vector3.left * Time.deltaTime;
-            g.transform.position = groundPos;
-
-            if (g.transform.position.x <= -65)
-            {
-                g.transform.position = new Vector3(65, 0, 0);
-            }
-        }
+        Vector3 groundPos = ground.transform.position;
+        groundPos += Vector3.left * Time.deltaTime;
+        ground.transform.position = groundPos;
 
         //Moves the foreground tiles
         foreach (GameObject f in arrayOfForegrounds)

@@ -40,7 +40,7 @@ public class Title_Menu : MonoBehaviour
             //Incraments too the correct index number
             if (selectedOptionNum == 0)
             {
-                selectedOptionNum = 0;
+                selectedOptionNum = 2;
             }
             else
             {
@@ -54,7 +54,7 @@ public class Title_Menu : MonoBehaviour
             buttons[selectedOptionNum].Deselect(); //Deselectes the last option
 
             //Incraments too the correct index number
-            if (selectedOptionNum == 0)
+            if (selectedOptionNum == 2)
             {
                 selectedOptionNum = 0;
             }

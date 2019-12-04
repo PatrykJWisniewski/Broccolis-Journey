@@ -11,10 +11,6 @@ TagManager:
   - LoadHiddenBoss
   - PowerUp
   - Death
-  - LoadForestHub
-  - LoadVolcanoHub
-  - LoadWinterHub
-  - LoadSpookyHub
   layers:
   - Default
   - TransparentFX
@@ -33,7 +29,7 @@ TagManager:
   - PowerUps
   - Death
   - End
-  - Doors
+  - 
   - 
   - 
   - 

@@ -18,7 +18,7 @@ public class CharacterController2D : MonoBehaviour
     public Collider2D collider2D1;
     public Collider2D collider2D2;
     public int damage = 30;
-    public float k_attackRadius = .2f;
+    public float k_attackRadius = .05f;
     public float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;  // Whether or not the player is grounded
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -33,8 +33,6 @@ public class CharacterController2D : MonoBehaviour
     public float parryForce;
     private bool wasattack = false;
     public player_health player_health;
-    public bool hurt = false;
-    public bool invulnerable = false;
 
     [Header("Events")]
     [Space]
@@ -119,7 +117,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl && !hurt)
+        if (m_Grounded || m_AirControl)
         {
             // If crouching
             if (crouch)
@@ -231,13 +229,6 @@ public class CharacterController2D : MonoBehaviour
             if (parry)
             {
                 m_Rigidbody2D.AddForce(new Vector2(0, parryForce - (m_Rigidbody2D.velocity.y / Time.fixedDeltaTime)));
-            }
-            else
-            {
-                if (!invulnerable)
-                {
-                    player_health.TakeDamage(damage);
-                }
             }
         }
 

@@ -105,20 +105,6 @@ public class player_movement : MonoBehaviour
             attack = false;
             animator.SetBool("isAttacking", false);
         }
-
-        if(Input.GetKeyDown(KeyCode.Return) && EventCollisionDetection.S.canOpenShop)
-        {
-            if (Main.S.shopMenu.activeInHierarchy == false)
-            {
-                Main.S.shopMenu.SetActive(true);
-                Main.S.shopMenu.GetComponent<Shop_Menu>().SetupShop(HubCharacters.S.shopItems);
-            }
-            else
-            {
-                Main.S.shopMenu.SetActive(false);
-                Main.S.shopMenu.GetComponent<Shop_Menu>().SetupShop(HubCharacters.S.shopItems);
-            }
-        }
     }
     public void OnLanding()
     {

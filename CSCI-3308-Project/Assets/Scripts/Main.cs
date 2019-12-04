@@ -26,7 +26,7 @@ public class Main : MonoBehaviour
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene("ForestHub");
+        SceneManager.LoadScene("Hub");
     }
 
     public IEnumerator LoadHiddenBossLevel()
