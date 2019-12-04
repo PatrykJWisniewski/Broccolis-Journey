@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 [System.Serializable]
 public class PlayerItems
 {
@@ -27,6 +28,11 @@ public class Player_Data : MonoBehaviour
 
     private void Awake()
     {
+        // STOP TAKING OUT DAM INPUT
+        #if !UNITY_EDITOR && UNITY_WEBGL
+        WebGLInput.captureAllKeyboardInput = false;
+        #endif
+
         //If the gameobject does not excist in the next scene then dont destroy it and set it's singalton staus
         if (S == null)
         {

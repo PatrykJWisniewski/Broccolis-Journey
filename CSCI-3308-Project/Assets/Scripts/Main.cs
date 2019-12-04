@@ -11,6 +11,9 @@ public class Main : MonoBehaviour
 
     public GameObject shopMenu;
 
+    public bool forest;
+    public bool spooky;
+
     // Start is called before the first frame update
     void Start()
     {

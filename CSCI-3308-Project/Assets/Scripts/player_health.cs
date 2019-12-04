@@ -60,7 +60,15 @@ public class player_health : MonoBehaviour
     }
     private IEnumerator Pause()
     {
-        yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(1);
+        yield return new WaitForSeconds(2);
+
+        if(Main.S.spooky)
+        {
+            SceneManager.LoadScene("SpookyHub");
+        }
+        else if (Main.S.forest)
+        {
+            SceneManager.LoadScene("ForestHub");
+        }
     }
 }
