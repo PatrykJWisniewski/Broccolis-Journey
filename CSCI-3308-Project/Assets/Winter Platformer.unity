@@ -633,6 +633,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c13b04b73f7a74387eb9846a45e370, type: 3}
+--- !u!1 &154511489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6151547605687664259, guid: e1c13b04b73f7a74387eb9846a45e370,
+    type: 3}
+  m_PrefabInstance: {fileID: 154511488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &188317529
 GameObject:
   m_ObjectHideFlags: 0
@@ -36002,7 +36008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyText: {fileID: 445159450}
   healthBar: {fileID: 419489923}
-  player: {fileID: 0}
+  player: {fileID: 154511489}
 --- !u!114 &2010215750
 MonoBehaviour:
   m_ObjectHideFlags: 0

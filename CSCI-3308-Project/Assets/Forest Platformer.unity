@@ -78134,7 +78134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyText: {fileID: 653713900}
   healthBar: {fileID: 49271611}
-  player: {fileID: 0}
+  player: {fileID: 702419445}
 --- !u!114 &478282612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78230,6 +78230,7 @@ GameObject:
   - component: {fileID: 518366032}
   - component: {fileID: 518366034}
   - component: {fileID: 518366033}
+  - component: {fileID: 518366035}
   m_Layer: 13
   m_Name: Coins
   m_TagString: Coins
@@ -78610,6 +78611,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &518366035
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518366031}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &592283408
 GameObject:
   m_ObjectHideFlags: 0
@@ -79602,6 +79619,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &702419445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6151547605687664259, guid: e1c13b04b73f7a74387eb9846a45e370,
+    type: 3}
+  m_PrefabInstance: {fileID: 677325344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &711635303
 GameObject:
   m_ObjectHideFlags: 0
