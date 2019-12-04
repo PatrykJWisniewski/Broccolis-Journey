@@ -35,7 +35,11 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
+<<<<<<< Updated upstream
         PlayerTime.sw.Stop();
+=======
+        PlayerTime.sw.Start();
+>>>>>>> Stashed changes
     }
 
     public void LoadMenu()
