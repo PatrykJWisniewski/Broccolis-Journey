@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class FinishLevel : MonoBehaviour
 {
     public GameObject CompleteLevelUI;
+    public GameObject Canvas;
+    //public GameObject PlayerTime;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -17,7 +19,8 @@ public class FinishLevel : MonoBehaviour
     void Finish()
     {
         CompleteLevelUI.SetActive(true);
-
+        Canvas = GameObject.Find("Canvas");
+        Canvas.GetComponent<PlayerTime>().Submit();
         StartCoroutine(Pause());
         
         

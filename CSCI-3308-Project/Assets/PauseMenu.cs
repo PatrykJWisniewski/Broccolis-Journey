@@ -28,12 +28,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         IsPaused = false;
         Time.timeScale = 1f;
+        PlayerTime.sw.Start();
     }
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
+        PlayerTime.sw.Stop();
     }
 
     public void LoadMenu()
