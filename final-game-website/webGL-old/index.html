@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | CSCI-3308-Project</title>
+    <script src="../static/js/jquery.js"></script>
+  <script src="../static/js/popper.js"></script>
+  <script src="../static/js/bootstrap-4.3.1.js"></script>
+  <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="../static/css/webgl-style.css">
+    <script defer src= "../static/js/player.js"></script>
+    <script defer src= "../static/js/chat.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/webGL-keyboardinput.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+  <body>
+    <div class = "cont">
+      <div class = "topbar">
+        <nav class = "nav-bar">
+          <ul>
+            <li id = "main-logo"><div id = 'title-1'>Broccoli's</div> <div id = 'title-2'>Journey</div></li>
+            <li id = "help-button">Help</li>
+            <li id = "scoreboard-button">Scoreboard</li>
+            <li id = "profile"><div id = "curUser"></div><i id = "open-profile" class="fas fa-user-circle"></i></li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+            <div class="live-feed"><h1>Live Chat</h1>
+                <p><i>Messages will appear below</i></p>
+            </div>
+            <div class = "chatmessage">
+                <input type="text" class="form-control" id="chatmessage-input" placeholder="Say something nice.. ">
+                <button type="submit" class="form-control" id="chatmessage-button">Send</button>
+            </div>
+     </div>
+      <div class="webgl-content">
+        <div id="unityContainer" style="width: 960px; height: 600px"></div>
+        <div class="footer">
+          <div class="webgl-logo"></div>
+          <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+          <div class="title">CSCI-3308-Project</div>
+        </div>
+      </div>
+    </div>
+
+    <div class = "userprofile">
+      <div class = "userprofile-sidebar">
+        <div class = "profile-image">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <label> Email </label>
+        <div class = "profile-email">
+        </div>
+        <label> Username </label>
+        <div class = "profile-username">
+        </div>
+        <label> High Score </label>
+        <div class = "profile-highscore">
+        </div>
+        <button id = "sign-out" class = "btn">Sign Out</button>
+      </div>
+    </div>
+
+
+    <!-- Scoreboard Modal -->
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id = "scoreboard-modal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class = "modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Scoreboard</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span id = 'closemodal' aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>10,567</td>
+                  <td>@user1</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>9,230</td>
+                  <td>@user2</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>3,250</td>
+                  <td>@user3</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>2,530</td>
+                  <td>@user4</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>2,250</td>
+                  <td>@user5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Help modal -->
+      <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "help-modal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class = "modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Help</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span id = 'closemodal' aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class = "modal-body">
+              <h3> Controls </h3>
+              <p> Use the W A S D keys to move around in the game. Use the spacebar to jump. </p>
+              <hr>
+              <h3> Chatting </h3>
+              <p> You can use the Live Chat to talk to other players while you are playing the game. To return to playing the game after chatting, simply click back on the game. This will enable the keyboard controls again. </p>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script defer src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD3TX4_EZtqIX03RThjQ3rJr30Q4rarozM",
+    authDomain: "csci3308-8fc5a.firebaseapp.com",
+    databaseURL: "https://csci3308-8fc5a.firebaseio.com",
+    projectId: "csci3308-8fc5a",
+    storageBucket: "csci3308-8fc5a.appspot.com",
+    messagingSenderId: "52671011064",
+    appId: "1:52671011064:web:7f7cc19ae97be90619030d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+  </body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		Game Website
+	</title>
+	<script src="static/js/jquery.js"></script>
+	<script src="static/js/popper.js"></script>
+	<script src="static/js/bootstrap-4.3.1.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="static/css/bootstrap.css">
+	<link rel = "stylesheet" href = "static/css/style.css">
+</head>
+<body>
+
+<div class = "body-container">
+	<div class = "body-left">
+		<nav class = "navbar">
+			<ul>
+				<li id = "main-logo"><div id = 'title-1'>Broccoli's</div> <div id = 'title-2'>Journey</div></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<div class = "body-right">
+
+		<div class = "login-container">
+
+			<h1> Login </h1>
+			<div class = "form-group">
+				<label for = "login-username"> Email </label>
+				<input type="email" name="login-username" id = "login-username">
+			</div>
+			<div class = "form-group">
+				<label for = "login-password"> Password </label>
+				<input type="password" name="login-password" id = "login-password">
+			</div>
+			<div class = "login-error-message"></div>
+			<div class = "sign-up"> Don't have an account? <a href = "#" class = "signup-link"> Sign up </a> </div>
+			<button type = "button" class = "btn btn-primary" id = "login-button">Login</button>
+
+		</div>
+		
+		<div class = "signup-container">
+			<h1> Sign Up </h1>
+			<div class = "form-group">
+				<label for = "signup-username" required class = "required"> Enter Email </label>
+				<input type="email" name="signup-username" id = "signup-username">
+			</div>
+			<div class = "form-group">
+				<label for = "signup-password" required class = "required"> Password </label>
+				<input type="password" name="signup-password" id = "signup-password">
+			</div>
+			<div class = "form-group">
+				<label for = "signup-confirmpassword" required class = "required"> Confirm Password </label>
+				<input type="password" name="signup-confirmpassword" id = "signup-confirmpassword">
+			</div>
+			<div class = "form-group">
+				<label for = "signup-displayname" required class = "required"> Enter a Username </label>
+				<input type="text" name="signup-displayname" id = "signup-displayname">
+			</div>
+			<div class = "form-group">
+				<label for = "signup-photo"> Photo URL </label>
+				<input type="text" name="signup-photo" id = "signup-photo">
+			</div>
+			<div class = "signup-error-message"></div>
+			<div class = "sign-up"> Already have an account? <a href = "#" class = "login-link"> Login </a> </div>
+			<button type = "button" class = "btn btn-primary" id = "signup-button">Sign Up</button>
+		</div>
+
+	</div>
+</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+	<script defer src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+	<script defer src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD3TX4_EZtqIX03RThjQ3rJr30Q4rarozM",
+    authDomain: "csci3308-8fc5a.firebaseapp.com",
+    databaseURL: "https://csci3308-8fc5a.firebaseio.com",
+    projectId: "csci3308-8fc5a",
+    storageBucket: "csci3308-8fc5a.appspot.com",
+    messagingSenderId: "52671011064",
+    appId: "1:52671011064:web:7f7cc19ae97be90619030d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script src = "static/js/login.js"></script>
+</body>
+</html>

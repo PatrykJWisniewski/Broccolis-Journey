@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "CSCI-3308-Project",
+"productVersion": "0.1",
+"dataUrl": "webGL-keyboardinput.data.unityweb",
+"wasmCodeUrl": "webGL-keyboardinput.wasm.code.unityweb",
+"wasmFrameworkUrl": "webGL-keyboardinput.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.8f1"
+}
