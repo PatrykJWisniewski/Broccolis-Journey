@@ -12,3 +12,11 @@ The application that our group built is a web based video game that falls into t
 
 This repository has the files for both the game and the website that hosts it. The CSCI-3308-Project folder contains all of the Unity files for the game. The final-game-website folder contains the complete website with the webGL Unity build and all of the html, css, and js files files. 
 
+## Running and Testing Code
+To run and test the website, navigate to the final-game-website directory and start a local server, on Mac, we used the following command in terminal
+
+```
+python -m SimpleHTTPServer
+```
+
+To open and test the full Unity game (not the webGL build), open the CSCI-3308-Project folder in Unity version 2019.2.8f1. To make a webGL build of the Unity code, got to File > Build > Select webGL > Build
