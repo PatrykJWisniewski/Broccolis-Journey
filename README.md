@@ -4,6 +4,7 @@ The application that our group built is a web based video game that falls into t
 
 ## Repo Structure
 [Meeting Logs](https://github.com/Skyryk/CSCI-3308-Meeting-Logs-Group-2)
+
 [Milestones] (https://github.com/Skyryk/CSCI-3308-Milestones-Group-2)
 
 This repository has the files for both the game and the website that hosts it. The CSCI-3308-Project folder contains all of the Unity files for the game. The final-game-website folder contains the complete website with the webGL Unity build and all of the html, css, and js files files. 
